@@ -6,6 +6,7 @@ defmodule Erss.Tag.Additional do
   schema "additional" do
     field(:url, :string, null: false)
     field(:name, :string, null: false)
+    field(:rating, :integer)
     many_to_many(:fics, Erss.Fic, join_through: "additional_fic", unique: true)
 
     timestamps()

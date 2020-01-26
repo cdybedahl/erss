@@ -6,7 +6,7 @@ defmodule ErssWeb.PageController do
     fandoms =
       from(f in Erss.Tag.Fandom, order_by: f.name)
       |> Erss.Repo.all()
-      |> Enum.map(fn e -> %{name: e.name, url: e.url} end)
+      |> Enum.map(fn e -> %{id: e.id, name: e.name, url: e.url} end)
 
     render(conn, "index.html", fandoms: fandoms)
   end

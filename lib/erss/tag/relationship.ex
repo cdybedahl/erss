@@ -6,6 +6,7 @@ defmodule Erss.Tag.Relationship do
   schema "relationship" do
     field(:url, :string, null: false)
     field(:name, :string, null: false)
+    field(:rating, :integer)
     many_to_many(:fics, Erss.Fic, join_through: "relationship_fic", unique: true)
 
     timestamps()

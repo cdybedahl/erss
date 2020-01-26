@@ -6,6 +6,7 @@ defmodule Erss.Tag.Fandom do
   schema "fandom" do
     field(:url, :string, null: false)
     field(:name, :string, null: false)
+    field(:rating, :integer)
     many_to_many(:fics, Erss.Fic, join_through: "fandom_fic", unique: true)
 
     timestamps()
