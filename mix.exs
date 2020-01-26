@@ -41,7 +41,12 @@ defmodule Erss.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:feeder_ex, "~> 1.1"},
+      {:httpoison, "~> 1.6"},
+      {:meeseeks, "~> 0.14.0"}
+      # {:quantum, "~> 2.3"},
+      # {:timex, "~> 3.6"}
     ]
   end
 
