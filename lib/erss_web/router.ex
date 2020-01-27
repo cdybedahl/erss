@@ -17,7 +17,14 @@ defmodule ErssWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/additional", AdditionalController, :index
+    get "/author", AuthorController, :index
+    get "/category", CategoryController, :index
+    get "/character", CharacterController, :index
     get "/fandom", FandomController, :index
+    get "/rating", RatingController, :index
+    get "/relationship", RelationshipController, :index
+    get "/warning", WarningController, :index
   end
 
   # Other scopes may use custom stacks.
