@@ -7,7 +7,7 @@
     <li><%= link("Fandoms", to: "/fandom/") %></li>
     <li><%= link("Ratings", to: "/rating/") %></li>
     <li><%= link("Relationships", to: "/relationship/") %></li>
-    <li><%= link("Warnings", to: "/warning/") %></li>
+    <li><%= link("Warnings", to: Routes.warning_path(@conn, :index)) %></li>
   </ul>
 </section>
 <section style="border: thin gray solid; padding: 2em; background-color: cornsilk;">
