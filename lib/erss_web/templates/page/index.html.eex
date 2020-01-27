@@ -1,7 +1,12 @@
 <section>
   <ul>
-    <%= for f <- @fandoms do %>
-      <li><a href="<%= f.url %>"><%= f.name %></a></li>
-    <% end %>
+    <li><%= link("Additional Tags", to: "/additional/") %></li>
+    <li><%= link("Authors", to: "/author/") %></li>
+    <li><%= link("Categories", to: "/category/") %></li>
+    <li><%= link("Characters", to: "/character/") %></li>
+    <li><%= link("Fandoms", to: "/fandom/") %></li>
+    <li><%= link("Ratings", to: "/rating/") %></li>
+    <li><%= link("Relationships", to: "/relationship/") %></li>
+    <li><%= link("Warnings", to: "/warning/") %></li>
   </ul>
 </section>

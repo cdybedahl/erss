@@ -17,6 +17,7 @@ defmodule ErssWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/fandom", FandomController, :index
   end
 
   # Other scopes may use custom stacks.

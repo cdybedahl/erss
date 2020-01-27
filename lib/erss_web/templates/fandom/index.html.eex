@@ -1,0 +1,5 @@
+<ul>
+    <%= for f <- @fandoms do %>
+        <li><a href="<%= f.url %>"><%= f.name %></a></li>
+    <% end %>
+</ul>
