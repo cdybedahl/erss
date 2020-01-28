@@ -12,7 +12,7 @@
 </section>
 <section style="border: thin gray solid; padding: 2em; background-color: cornsilk;">
   <h3>Most Recent Fic (#<%= @fic.id %>)</h3>
-  <h2><%= @fic.title %></h2>
+  <h2><%= link(@fic.title, to: @fic.link) %></h2>
   <div>
     <%= raw @fic.raw %>
   </div>
