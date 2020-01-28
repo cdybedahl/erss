@@ -1,5 +1,10 @@
 <ul>
     <%= for f <- @tags do %>
-        <li><a href="<%= f.url %>"><%= f.name %></a></li>
+        <li>
+            <%= button("-", to: Routes.relationship_path(@conn, :downrate, f.id, 1)) %>
+            <span style="font: large bold; color: white; background-color: blue; padding: 0 1ex 0 1ex;"><%= f.rating %></span>
+            <%= button("+", to: Routes.relationship_path(@conn, :uprate, f.id, 1)) %>
+            <%= link(f.name, to: f.url) %>
+        </li>
     <% end %>
 </ul>
