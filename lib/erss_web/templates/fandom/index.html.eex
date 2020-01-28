@@ -1,5 +1,5 @@
 <ul>
     <%= for f <- @tags do %>
-        <li><a href="<%= f.url %>"><%= f.name %></a></li>
+        <li>- <%= f.rating %> + <a href="<%= f.url %>"><%= f.name %></a></li>
     <% end %>
 </ul>

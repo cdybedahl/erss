@@ -22,6 +22,8 @@ defmodule ErssWeb.Router do
     get "/category", CategoryController, :index
     get "/character", CharacterController, :index
     get "/fandom", FandomController, :index
+    post "/fandom/:id/uprate/:amount", FandomController, :uprate
+    post "/fandom/:id/downrate/:amount", FandomController, :downrate
     get "/rating", RatingController, :index
     get "/relationship", RelationshipController, :index
     get "/warning", WarningController, :index

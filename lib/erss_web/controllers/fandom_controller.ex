@@ -9,4 +9,12 @@ defmodule ErssWeb.FandomController do
 
     render(conn, "index.html", tags: tags)
   end
+
+  def uprate(conn, params) do
+    render(conn, "tmp.html", params: params)
+  end
+
+  def downrate(conn, params) do
+    render(conn, "tmp.html", params: params)
+  end
 end
