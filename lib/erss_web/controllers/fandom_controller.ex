@@ -1,6 +1,7 @@
 defmodule ErssWeb.FandomController do
   use ErssWeb, :controller
   import Ecto.Query
+  import Ecto.Changeset
 
   def index(conn, _params) do
     tags =
@@ -10,11 +11,21 @@ defmodule ErssWeb.FandomController do
     render(conn, "index.html", tags: tags)
   end
 
-  def uprate(conn, params) do
-    render(conn, "tmp.html", params: params)
+  def uprate(conn, %{"id" => id, "amount" => amount}) do
+    tag = Erss.Repo.get!(Erss.Tag.Fandom, id)
+
+    change(tag, %{rating: tag.rating + String.to_integer(amount)})
+    |> Erss.Repo.update!()
+
+    redirect(conn, to: "/fandom")
   end
 
-  def downrate(conn, params) do
-    render(conn, "tmp.html", params: params)
+  def downrate(conn, %{"id" => id, "amount" => amount}) do
+    tag = Erss.Repo.get!(Erss.Tag.Fandom, id)
+
+    change(tag, %{rating: tag.rating - String.to_integer(amount)})
+    |> Erss.Repo.update!()
+
+    redirect(conn, to: "/fandom")
   end
 end
