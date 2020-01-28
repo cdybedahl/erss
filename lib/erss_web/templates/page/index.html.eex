@@ -1,15 +1,3 @@
-<section>
-  <ul>
-    <li><%= link("Additional Tags", to: "/additional/") %></li>
-    <li><%= link("Authors", to: "/author/") %></li>
-    <li><%= link("Categories", to: "/category/") %></li>
-    <li><%= link("Characters", to: "/character/") %></li>
-    <li><%= link("Fandoms", to: "/fandom/") %></li>
-    <li><%= link("Ratings", to: "/rating/") %></li>
-    <li><%= link("Relationships", to: "/relationship/") %></li>
-    <li><%= link("Warnings", to: Routes.warning_path(@conn, :index)) %></li>
-  </ul>
-</section>
 <section style="border: thin gray solid; padding: 2em; background-color: cornsilk;">
   <h3>Most Recent Fic (#<%= @fic.id %>)</h3>
   <h2><%= link(@fic.title, to: @fic.link) %></h2>

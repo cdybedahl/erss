@@ -17,6 +17,7 @@ defmodule ErssWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/fic", FicController, :index
 
     get "/additional", AdditionalController, :index
     post "/additional/:id/uprate/:amount", AdditionalController, :uprate

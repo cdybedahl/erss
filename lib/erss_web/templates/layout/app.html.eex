@@ -12,6 +12,18 @@
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <%= link("Top", to: "/") %>&nbsp;
+      <%= link("Additional Tags", to: "/additional/") %>&nbsp;
+      <%= link("Authors", to: "/author/") %>&nbsp;
+      <%= link("Categories", to: "/category/") %>&nbsp;
+      <%= link("Characters", to: "/character/") %>&nbsp;
+      <%= link("Fandoms", to: "/fandom/") %>&nbsp;
+      <%= link("Ratings", to: "/rating/") %>&nbsp;
+      <%= link("Relationships", to: "/relationship/") %>&nbsp;
+      <%= link("Warnings", to: Routes.warning_path(@conn, :index)) %>&nbsp;
+      <%= link("Fic", to: Routes.fic_path(@conn, :index)) %>&nbsp;
+
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
