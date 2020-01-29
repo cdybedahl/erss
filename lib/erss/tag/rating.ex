@@ -7,7 +7,8 @@ defmodule Erss.Tag.Rating do
     field(:url, :string, null: false)
     field(:name, :string, null: false)
     field(:rating, :integer)
-    many_to_many(:fics, Erss.Fic, join_through: "rating_fic", unique: true)
+    # FIXME
+    has_many(:fics, Erss.Fic)
 
     timestamps()
   end

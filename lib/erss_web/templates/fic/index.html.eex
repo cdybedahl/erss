@@ -1,1 +1,9 @@
-<h1>This is the fic page</h1>
+<h1>25 most recent fics</h1>
+
+<ul>
+    <%= for f <- @fics do %>
+    <li>
+        <%= link(f.title, to: f.link) %>
+    </li>
+    <% end %>
+</ul>

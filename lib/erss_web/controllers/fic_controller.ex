@@ -1,7 +1,17 @@
 defmodule ErssWeb.FicController do
   use ErssWeb, :controller
 
+  import Ecto.Query
+  alias Erss.Repo
+
   def index(conn, _params) do
-    render(conn, "index.html")
+    fics =
+      from(f in Erss.Fic,
+        order_by: [desc: f.id],
+        limit: 25
+      )
+      |> Repo.all()
+
+    render(conn, "index.html", fics: fics)
   end
 end
