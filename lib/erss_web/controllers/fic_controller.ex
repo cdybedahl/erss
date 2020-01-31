@@ -8,7 +8,8 @@ defmodule ErssWeb.FicController do
     fics =
       from(f in Erss.Fic,
         order_by: [desc: f.id],
-        limit: 25
+        limit: 25,
+        preload: :fandoms
       )
       |> Repo.all()
 

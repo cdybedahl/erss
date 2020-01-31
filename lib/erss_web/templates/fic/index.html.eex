@@ -3,7 +3,7 @@
 <ul>
     <%= for f <- @fics do %>
     <li>
-        <%= link(f.title, to: f.link) %>
+        <%= link(f.title, to: f.link) %><br><small><%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %></small>
     </li>
     <% end %>
 </ul>
