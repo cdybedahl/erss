@@ -1,10 +1,5 @@
 <ul>
     <%= for f <- @tags do %>
-        <li>
-            <%= button("-", to: Routes.character_path(@conn, :downrate, f.id, 1)) %>
-            <span style="font: large bold; color: white; background-color: blue; padding: 0 1ex 0 1ex;"><%= f.rating %></span>
-            <%= button("+", to: Routes.character_path(@conn, :uprate, f.id, 1)) %>
-            <%= link(f.name, to: f.url) %>
-        </li>
+        <li><%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: f, path: &Routes.character_path/4 %></li>
     <% end %>
 </ul>
