@@ -1,9 +1,23 @@
+<table id="toplists">
+    <tr>
+        <td><%= render("tag_table.html", tags: @warnings, title: "Warnings") %></td>
+        <td><%= render("tag_table.html", tags: @categories, title: "Categories") %></td>
+    </tr>
+    <tr>
+        <td><%= render("tag_table.html", tags: @ratings, title: "Ratings") %></td>
+        <td><%= render("tag_table.html", tags: @fandoms, title: "Top 10 Fandoms") %></td>
+    </tr>
+</table>
+
 <h1>25 most recent fics</h1>
 
-<ul>
+<dl id="ficlist">
     <%= for f <- @fics do %>
-    <li>
-        <%= link(f.title, to: f.link) %><br><small><%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %></small>
-    </li>
+    <dt>
+        #<%= f.id %>: <%= link(f.title, to: f.link) %>
+    </dt>
+    <dd>
+        <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+    </dd>
     <% end %>
-</ul>
+</dl>

@@ -1,3 +1,28 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+
+#ficlist {
+    padding: 1em;
+    border: thin gainsboro solid;
+    background-color: whitesmoke;
+}
+
+#ficlist dt {
+    font-weight: bolder;
+    font-variant: small-caps;
+}
+
+#ficlist dd {
+    font-size: small;
+}
+
+h1 {
+    color: green;
+    font-family: cursive;
+    font-size: 3em;
+}
+
+#toplists>tbody>tr>td {
+    vertical-align: top;
+}

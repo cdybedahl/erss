@@ -1,0 +1,10 @@
+<h1><%= @title %></h1>
+
+<table>
+<%= for {[name, url], number} <- @tags do %>
+<tr>
+    <td><%= link(name,to: url) %></td>
+    <td><%= number %></td>
+</tr>
+<% end %>
+</table>
