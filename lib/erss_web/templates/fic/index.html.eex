@@ -14,7 +14,7 @@
 <dl id="ficlist">
     <%= for f <- @fics do %>
     <dt>
-        #<%= f.id %>: <%= link(f.title, to: f.link) %>
+        #<%= f.id %>: <%= link(f.title, to: f.link) %> (<%= f.total %>)
     </dt>
     <dd>
         <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>

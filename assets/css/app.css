@@ -17,9 +17,15 @@
     font-size: small;
 }
 
-h1 {
+h1,
+h2,
+h3 {
     color: green;
     font-family: cursive;
+    text-align: center;
+}
+
+h1 {
     font-size: 3em;
 }
 

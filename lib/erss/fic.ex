@@ -65,4 +65,33 @@ defmodule Erss.Fic do
         f
     end
   end
+
+  def total_rating(fic) do
+    f =
+      fic
+      |> Repo.preload([
+        :additional_tags,
+        :author,
+        :categories,
+        :characters,
+        :fandoms,
+        :rating,
+        :relationships,
+        :warnings
+      ])
+
+    Enum.concat([
+      f.additional_tags,
+      [f.author],
+      f.categories,
+      f.characters,
+      f.characters,
+      f.fandoms,
+      [f.rating],
+      f.relationships,
+      f.warnings
+    ])
+    |> Enum.map(fn t -> t.rating end)
+    |> Enum.reduce(0, fn acc, t -> acc + t end)
+  end
 end

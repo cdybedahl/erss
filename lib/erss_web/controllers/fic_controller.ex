@@ -12,6 +12,7 @@ defmodule ErssWeb.FicController do
         preload: :fandoms
       )
       |> Repo.all()
+      |> Enum.map(fn f -> Map.put(f, :total, Erss.Fic.total_rating(f)) end)
 
     warnings = count_tags(:warnings)
     categories = count_tags(:categories)
