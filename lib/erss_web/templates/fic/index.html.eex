@@ -13,7 +13,7 @@
 
 <dl id="ficlist">
     <%= for f <- @fics do %>
-    <dt>
+    <dt class="<%= f.class %>">
         #<%= f.id %>: <%= link(f.title, to: f.link) %> (<%= f.total %>)
     </dt>
     <dd>

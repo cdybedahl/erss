@@ -4,8 +4,6 @@
 
 #ficlist {
     padding: 1em;
-    border: thin gainsboro solid;
-    background-color: whitesmoke;
 }
 
 #ficlist dt {
@@ -15,6 +13,22 @@
 
 #ficlist dd {
     font-size: small;
+    border-bottom: thin gray solid;
+    padding-bottom: 1rem;
+}
+
+#ficlist dt.bad {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 75%;
+}
+
+#ficlist dt.bad a {
+    color: gray;
+}
+
+#ficlist dt.good {
+    background-color: lightyellow;
 }
 
 h1,
