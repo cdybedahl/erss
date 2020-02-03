@@ -1,9 +1,9 @@
 <h1><%= @title %></h1>
 
 <table>
-<%= for {[name, url], number} <- @tags do %>
+<%= for {[name, id], number} <- @tags do %>
 <tr>
-    <td><%= link(name,to: url) %></td>
+    <td><%= link(name,to: @path.(@conn, :list, id, 1)) %></td>
     <td><%= number %></td>
 </tr>
 <% end %>

@@ -34,8 +34,8 @@ defmodule ErssWeb.PageController do
   defp count_tags(tag) do
     from(f in Erss.Fic,
       join: ff in assoc(f, ^tag),
-      select: {[ff.name, ff.url], count(ff.id)},
-      group_by: [ff.name, ff.url]
+      select: {[ff.name, ff.id], count(ff.id)},
+      group_by: [ff.name, ff.id]
     )
     |> Repo.all()
     |> Enum.sort(fn {_, m}, {_, n} -> m >= n end)

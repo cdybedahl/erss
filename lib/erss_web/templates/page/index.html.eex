@@ -9,19 +9,19 @@
 
 <table id="toplists">
     <tr>
-        <td><%= render("tag_table.html", tags: @warnings, title: "Warnings") %></td>
-        <td><%= render("tag_table.html", tags: @categories, title: "Categories") %></td>
+        <td><%= render("tag_table.html", tags: @warnings, title: "Warnings", path: &Routes.warning_path/4, conn: @conn) %></td>
+        <td><%= render("tag_table.html", tags: @categories, title: "Categories", path: &Routes.category_path/4, conn: @conn) %></td>
     </tr>
     <tr>
-        <td><%= render("tag_table.html", tags: @ratings, title: "Ratings") %></td>
-        <td><%= render("tag_table.html", tags: @fandoms, title: "Top 10 Fandoms") %></td>
+        <td><%= render("tag_table.html", tags: @ratings, title: "Ratings", path: &Routes.rating_path/4, conn: @conn) %></td>
+        <td><%= render("tag_table.html", tags: @fandoms, title: "Top 10 Fandoms", path: &Routes.fandom_path/4, conn: @conn) %></td>
     </tr>
     <tr>
-        <td><%= render("tag_table.html", tags: @characters, title: "Characters") %></td>
-        <td><%= render("tag_table.html", tags: @relationships, title: "Relationships") %></td>
+        <td><%= render("tag_table.html", tags: @characters, title: "Characters", path: &Routes.character_path/4, conn: @conn) %></td>
+        <td><%= render("tag_table.html", tags: @relationships, title: "Relationships", path: &Routes.relationship_path/4, conn: @conn) %></td>
     </tr>
     <tr>
-        <td><%= render("tag_table.html", tags: @authors, title: "Authors") %></td>
-        <td><%= render("tag_table.html", tags: @additional, title: "Additional Tags") %></td>
+        <td><%= render("tag_table.html", tags: @authors, title: "Authors", path: &Routes.author_path/4, conn: @conn) %></td>
+        <td><%= render("tag_table.html", tags: @additional, title: "Additional Tags", path: &Routes.additional_path/4, conn: @conn) %></td>
     </tr>
 </table>
