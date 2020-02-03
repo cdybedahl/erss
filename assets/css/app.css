@@ -29,6 +29,13 @@
     color: white;
 }
 
+#most_recent {
+    border: thin gray solid;
+    padding: 2rem;
+    background-color: cornsilk;
+    border-radius: 50px;
+}
+
 #ficlist {
     padding: 1rem;
     margin: 1rem;

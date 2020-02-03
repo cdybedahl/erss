@@ -1,5 +1,5 @@
-<section style="border: thin gray solid; padding: 2em; background-color: cornsilk;">
-  <h2>Most Recent Fic (#<%= @fic.id %>)</h2>
+<section id="most_recent">
+  <h1>Most Recent Fic (#<%= @fic.id %>)</h1>
   <h3>Rated <%= @rating %></h3>
   <h2><%= link(@fic.title, to: @fic.link) %></h2>
   <div>

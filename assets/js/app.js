@@ -15,3 +15,11 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+
+let h1list = document.getElementsByTagName("h1")
+for (let i = 0; i < h1list.length; i++) {
+    let e = h1list[i]
+    e.onclick = (e) => {
+        e.target.textContent = Array.from(e.target.textContent).reverse().join("")
+    }
+}
