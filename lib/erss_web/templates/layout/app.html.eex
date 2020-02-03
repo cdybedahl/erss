@@ -9,20 +9,24 @@
     <%= csrf_meta_tag() %>
   </head>
   <body>
+      <div id="topmenu">
+      <ul>
+        <li><%= link("Top", to: "/") %></li>
+        <li><%= link("Additional Tags", to: "/additional/") %></li>
+        <li><%= link("Authors", to: "/author/") %></li>
+        <li><%= link("Categories", to: "/category/") %></li>
+        <li><%= link("Characters", to: "/character/") %></li>
+        <li><%= link("Fandoms", to: "/fandom/") %></li>
+        <li><%= link("Ratings", to: "/rating/") %></li>
+        <li><%= link("Relationships", to: "/relationship/") %></li>
+        <li><%= link("Warnings", to: Routes.warning_path(@conn, :index)) %></li>
+        <li><%= link("Fic", to: Routes.fic_path(@conn, :index)) %></li>
+      </ul>
+      </div>
+
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <%= link("Top", to: "/") %>&nbsp;
-      <%= link("Additional Tags", to: "/additional/") %>&nbsp;
-      <%= link("Authors", to: "/author/") %>&nbsp;
-      <%= link("Categories", to: "/category/") %>&nbsp;
-      <%= link("Characters", to: "/character/") %>&nbsp;
-      <%= link("Fandoms", to: "/fandom/") %>&nbsp;
-      <%= link("Ratings", to: "/rating/") %>&nbsp;
-      <%= link("Relationships", to: "/relationship/") %>&nbsp;
-      <%= link("Warnings", to: Routes.warning_path(@conn, :index)) %>&nbsp;
-      <%= link("Fic", to: Routes.fic_path(@conn, :index)) %>&nbsp;
 
       <%= render @view_module, @view_template, assigns %>
     </main>

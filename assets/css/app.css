@@ -2,33 +2,88 @@
 
 @import "./phoenix.css";
 
+#topmenu {
+    color: white;
+    background-color: black;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+#topmenu ul {
+    list-style-type: none;
+    width: 50%;
+    margin-left: 25%;    
+}
+
+#topmenu li {
+    display: inline-block;
+    text-align: center;
+    padding-right: 0.5rem;
+}
+
+#topmenu li a {
+    color: white;
+}
+
 #ficlist {
-    padding: 1em;
+    padding: 1rem;
+    margin: 1rem;
 }
 
-#ficlist dt {
-    font-weight: bolder;
+#ficlist td {
+    padding: 1rem;
+}
+
+#ficlist .fic_id, #ficlist .fic_tagname {
+    text-align: right;
     font-variant: small-caps;
+    font-weight: bolder;
 }
 
-#ficlist dd {
-    font-size: small;
-    border-bottom: thin gray solid;
-    padding-bottom: 1rem;
+#ficlist .fic_tagname {
+    vertical-align: text-top;
 }
 
-#ficlist dt.bad {
-    text-decoration: line-through;
-    color: gray;
-    font-size: 75%;
+#ficlist .bad {
+    background-color: #ffcccc;
 }
 
-#ficlist dt.bad a {
+#ficlist .bad a {
     color: gray;
 }
 
-#ficlist dt.good {
-    background-color: lightyellow;
+#ficlist .good {
+    background-color: #ccffcc;
+}
+
+#ficlist .neutral {
+    background-color: #ffffcc;
+}
+
+#ficlist td.fic_title {
+    font-weight: bold;
+}
+
+#ficlist td.fic_tags {
+    font-size: smaller;
+}
+
+.pagination {
+    width: 50%;
+    margin: auto;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-size: larger;
 }
 
 h1,

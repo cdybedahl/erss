@@ -1,12 +1,35 @@
-<h1>25 most recent fics</h1>
+<%= if @page == 1 do %>
+<h1><%= @len %> most recent fics</h1>
+<% else %>
+<h1>Fic <%= (@page-1) * @len + 1 %> to <%= @page * @len %></h1>
+<% end %>
 
-<dl id="ficlist">
+<table id="ficlist">
+    <tr>
+        <td colspan="3">
+            <%= render("pagination.html", assigns) %>
+        </td>
+    </tr>
     <%= for f <- @fics do %>
-    <dt class="<%= f.class %>">
-        #<%= f.id %>: <%= link(f.title, to: f.link) %> (<%= f.total %>)
-    </dt>
-    <dd>
-        <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
-    </dd>
+    <tr class="<%= f.class %>">
+        <td class="fic_id">#<%= f.id %></td>
+        <td class="fic_title"><%= link(f.title, to: f.link) %></td>
+        <td class="fic_total"><%= f.total %></td>
+    </tr>
+    <tr>
+        <td class="fic_tagname <%= f.class %>">Fandoms:</td>
+        <td class="fic_tags" colspan="2">
+            <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        </td>
+    <tr>
+    <tr>
+        <td class="fic_tagname <%= f.class %>">Relationships:</td>
+        <td class="fic_tags" colspan="2">
+            <%= f.relationships |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        </td>
+    <tr>
     <% end %>
-</dl>
+    <tr>
+        <td colspan="3"><%= render("pagination.html", assigns) %></td>
+    </tr>
+</table>
