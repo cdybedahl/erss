@@ -6,3 +6,22 @@
     <%= raw @fic.raw %>
   </div>
 </section>
+
+<table id="toplists">
+    <tr>
+        <td><%= render("tag_table.html", tags: @warnings, title: "Warnings") %></td>
+        <td><%= render("tag_table.html", tags: @categories, title: "Categories") %></td>
+    </tr>
+    <tr>
+        <td><%= render("tag_table.html", tags: @ratings, title: "Ratings") %></td>
+        <td><%= render("tag_table.html", tags: @fandoms, title: "Top 10 Fandoms") %></td>
+    </tr>
+    <tr>
+        <td><%= render("tag_table.html", tags: @characters, title: "Characters") %></td>
+        <td><%= render("tag_table.html", tags: @relationships, title: "Relationships") %></td>
+    </tr>
+    <tr>
+        <td><%= render("tag_table.html", tags: @authors, title: "Authors") %></td>
+        <td><%= render("tag_table.html", tags: @additional, title: "Additional Tags") %></td>
+    </tr>
+</table>
