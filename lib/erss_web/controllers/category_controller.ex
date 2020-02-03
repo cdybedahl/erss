@@ -3,6 +3,18 @@ defmodule ErssWeb.CategoryController do
   import Ecto.Query
   import Ecto.Changeset
 
+  def list(conn, params = %{"id" => id}) do
+    source =
+      from(t in Erss.Tag.Category, where: t.id == ^id, join: f in assoc(t, :fics), select: f)
+
+    conn
+    |> put_view(ErssWeb.FicView)
+    |> render(
+      "index.html",
+      ErssWeb.Helper.paged(source, fn p -> Routes.category_path(conn, :list, id, p) end, params)
+    )
+  end
+
   def index(conn, _params) do
     tags =
       from(f in Erss.Tag.Category, order_by: [desc: f.rating, asc: f.name])
@@ -17,7 +29,7 @@ defmodule ErssWeb.CategoryController do
     change(tag, %{rating: tag.rating + String.to_integer(amount)})
     |> Erss.Repo.update!()
 
-    redirect(conn, to: "/category")
+    redirect(conn, to: Routes.category_path(conn, :index))
   end
 
   def downrate(conn, %{"id" => id, "amount" => amount}) do
@@ -26,6 +38,6 @@ defmodule ErssWeb.CategoryController do
     change(tag, %{rating: tag.rating - String.to_integer(amount)})
     |> Erss.Repo.update!()
 
-    redirect(conn, to: "/category")
+    redirect(conn, to: Routes.category_path(conn, :index))
   end
 end

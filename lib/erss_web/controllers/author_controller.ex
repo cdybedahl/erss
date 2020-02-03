@@ -3,6 +3,19 @@ defmodule ErssWeb.AuthorController do
   import Ecto.Query
   import Ecto.Changeset
 
+  def list(conn, params = %{"id" => id}) do
+    source =
+      from(t in Erss.Tag.Author, where: t.id == ^id, join: f in assoc(t, :fics), select: f)
+
+    conn
+    |> put_view(ErssWeb.FicView)
+    |> render(
+      "index.html",
+      ErssWeb.Helper.paged(source, fn p -> Routes.author_path(conn, :list, id, p) end, params)
+    )
+  end
+
+
   def index(conn, _params) do
     tags =
       from(f in Erss.Tag.Author, order_by: [desc: f.rating, asc: f.name])

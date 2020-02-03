@@ -15,13 +15,17 @@ defmodule ErssWeb.Helper do
       from(f in source,
         order_by: [desc: f.id],
         limit: @pagelen,
-        preload: [:fandoms, :relationships],
         offset: @pagelen * (^page - 1)
       )
       |> Repo.all()
+      |> Repo.preload([:fandoms, :relationships])
       |> Enum.map(fn f -> Map.put(f, :total, Erss.Fic.total_rating(f)) end)
       |> Enum.map(&Erss.Fic.rating_class/1)
 
     %{fics: fics, page: page, max_page: max, len: @pagelen, pagination: route}
+  end
+
+  def paged(source, route, params) do
+    paged(source, route, Map.put(params, "page", 1))
   end
 end
