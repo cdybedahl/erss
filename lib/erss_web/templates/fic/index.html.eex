@@ -1,7 +1,7 @@
 <%= if @page == 1 do %>
-<h1><%= @len %> most recent fics</h1>
+<h1><%= min(@total, @len) %> most recent fics</h1>
 <% else %>
-<h1>Fic <%= (@page-1) * @len + 1 %> to <%= @page * @len %></h1>
+<h1>Fic <%= (@page-1) * @len + 1 %> to <%= min(@total, @page * @len) %></h1>
 <% end %>
 
 <table id="ficlist">
@@ -18,9 +18,10 @@
     </tr>
     <tr>
         <td class="fic_tagname <%= f.class %>">Fandoms:</td>
-        <td class="fic_tags" colspan="2">
+        <td class="fic_tags">
             <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
         </td>
+        <td class="fic_words"><%= f.words %> words</td>
     <tr>
     <tr>
         <td class="fic_tagname <%= f.class %>">Relationships:</td>
@@ -28,6 +29,26 @@
             <%= f.relationships |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
         </td>
     <tr>
+    <tr>
+        <td class="fic_tagname <%= f.class %>">Categories:</td>
+        <td class="fic_tags" colspan="2">
+            <%= f.categories |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        </td>
+    <tr>
+    <tr>
+        <td class="fic_tagname <%= f.class %>">Warnings:</td>
+        <td class="fic_tags" colspan="2">
+            <%= f.warnings |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        </td>
+    <tr>
+    <%= if Enum.count(f.additional_tags) > 0 do %>
+    <tr>
+        <td class="fic_tagname <%= f.class %>">Additional Tags:</td>
+        <td class="fic_tags" colspan="2">
+            <%= f.additional_tags |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        </td>
+    <tr>
+    <% end %>
     <% end %>
     <tr>
         <td colspan="3"><%= render(ErssWeb.FicView, "pagination.html", assigns) %></td>

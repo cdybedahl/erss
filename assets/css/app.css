@@ -4,7 +4,6 @@
 
 #topmenu {
     color: white;
-    background-color: black;
     margin: 0 0 2rem 0;
     width: 100%;
     padding: 0.5rem;
@@ -12,14 +11,18 @@
 
 #topmenu ul {
     list-style-type: none;
-    width: 50%;
-    margin-left: 25%;    
+    width: 100rem;
+    margin: auto;
+    text-align: center;
+    background-color: black;
+    border-radius: 15px;
 }
 
 #topmenu li {
     display: inline-block;
     text-align: center;
-    padding-right: 0.5rem;
+    vertical-align: middle;
+    padding: 0.5rem;
 }
 
 #topmenu li a {
@@ -35,10 +38,22 @@
     padding: 1rem;
 }
 
-#ficlist .fic_id, #ficlist .fic_tagname {
+#ficlist .fic_id,
+#ficlist .fic_tagname,
+#ficlist .fic_words {
     text-align: right;
     font-variant: small-caps;
     font-weight: bolder;
+}
+
+#ficlist .fic_total {
+    background-color: tan;
+    color: blue;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    border-radius: 20px;
 }
 
 #ficlist .fic_tagname {
@@ -66,7 +81,7 @@
 }
 
 #ficlist td.fic_tags {
-    font-size: smaller;
+    font-size: 100%;
 }
 
 .pagination {
