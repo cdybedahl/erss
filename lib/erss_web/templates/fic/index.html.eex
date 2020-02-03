@@ -7,7 +7,7 @@
 <table id="ficlist">
     <tr>
         <td colspan="3">
-            <%= render("pagination.html", assigns) %>
+            <%= render(ErssWeb.FicView, "pagination.html", assigns) %>
         </td>
     </tr>
     <%= for f <- @fics do %>
@@ -30,6 +30,6 @@
     <tr>
     <% end %>
     <tr>
-        <td colspan="3"><%= render("pagination.html", assigns) %></td>
+        <td colspan="3"><%= render(ErssWeb.FicView, "pagination.html", assigns) %></td>
     </tr>
 </table>

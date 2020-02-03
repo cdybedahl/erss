@@ -94,4 +94,16 @@ defmodule Erss.Fic do
     |> Enum.map(fn t -> t.rating end)
     |> Enum.reduce(0, fn acc, t -> acc + t end)
   end
+
+  def rating_class(fic = %{:total => total}) when total < 0 do
+    Map.put(fic, :class, "bad")
+  end
+
+  def rating_class(fic = %{:total => total}) when total > 4 do
+    Map.put(fic, :class, "good")
+  end
+
+  def rating_class(fic) do
+    Map.put(fic, :class, "neutral")
+  end
 end

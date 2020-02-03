@@ -1,11 +1,11 @@
 <div class="pagination">
     <%= if @page > 1 do %>
-    <%= link "⬅", to: Routes.fic_path(@conn, :index, @page - 1) %>
+    <%= link "⬅", to: @pagination.(@conn, :index, @page - 1) %>
     <% end %>
 
     Page <%= @page %> of <%= @max_page %>
 
     <%= if @page < @max_page do %>
-    <%= link "➡", to: Routes.fic_path(@conn, :index, @page + 1) %>
+    <%= link "➡", to: @pagination.(@conn, :index, @page + 1) %>
     <% end %>
 </div>
