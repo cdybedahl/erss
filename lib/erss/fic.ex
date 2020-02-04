@@ -80,7 +80,7 @@ defmodule Erss.Fic do
         :warnings
       ])
 
-    Enum.concat([
+    sum = Enum.concat([
       f.additional_tags,
       [f.author],
       f.categories,
@@ -93,6 +93,12 @@ defmodule Erss.Fic do
     ])
     |> Enum.map(fn t -> t.rating end)
     |> Enum.reduce(0, fn acc, t -> acc + t end)
+
+    if f.words < 1000 do
+      sum - 2
+    else
+      sum
+    end
   end
 
   def rating_class(fic = %{:total => total}) when total < 0 do
