@@ -18,15 +18,19 @@
     </tr>
     <tr>
         <td class="fic_tagname <%= f.class %>">Fandoms:</td>
-        <td class="fic_tags">
-            <%= f.fandoms |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        <td class="fic_tags tag_inline">
+            <%= for t <- f.fandoms do %>
+            <%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: t, path: &Routes.additional_path/4 %>
+            <% end %>
         </td>
         <td class="fic_words"><%= f.words %> words</td>
     <tr>
     <tr>
         <td class="fic_tagname <%= f.class %>">Relationships:</td>
-        <td class="fic_tags" colspan="2">
-            <%= f.relationships |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        <td class="fic_tags tag_inline" colspan="2">
+            <%= for t <- f.relationships do %>
+            <%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: t, path: &Routes.additional_path/4 %>
+            <% end %>
         </td>
     <tr>
     <tr>
@@ -44,7 +48,7 @@
     <%= if Enum.count(f.additional_tags) > 0 do %>
     <tr>
         <td class="fic_tagname <%= f.class %>">Additional Tags:</td>
-        <td class="fic_tags tag_additional" colspan="2">
+        <td class="fic_tags tag_inline" colspan="2">
             <%= for t <- f.additional_tags do %>
             <%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: t, path: &Routes.additional_path/4 %>
             <% end %>

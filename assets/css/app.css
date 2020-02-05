@@ -170,22 +170,22 @@ h1 {
     list-style-type: none;
 }
 
-.tag_additional .show_tag {
+.tag_inline .show_tag {
     margin: 0;
     padding: 0;
     width: 30%;
     line-height: 1.0;
-    background-color: cornsilk;
-    border-style: groove;
-    border-color: cornsilk;
+    background-color: inherit;
+    border: thin tan dotted;
+    border-radius: 10px;
 }
 
-.tag_additional .show_tag .tag_rating {
+.tag_inline .show_tag .tag_rating {
     background-color: inherit;
     color: black;
     width: auto;
 }
 
-.tag_additional .show_tag td {
+.tag_inline .show_tag td {
     padding: 0.25rem !important;
 }
