@@ -3,6 +3,6 @@
     <td class="minus"><%= button("-", to: @path.(@conn, :downrate, @tag.id, 1), class: "ratebutton") %></td>
     <td class="tag_rating"><%= @tag.rating %></td>
     <td class="plus"><%= button("+", to: @path.(@conn, :uprate, @tag.id, 1), class: "ratebutton") %></td>
-    <td class="tag_name"><%= link(@tag.name, to: @path.(@conn, :list, @tag.id, 1)) %><td>
+    <td class="tag_name"><%= link(@tag.name, to: @path.(@conn, :list, @tag.id, 1)) %></td>
     </tr>
 </table>

@@ -44,8 +44,10 @@
     <%= if Enum.count(f.additional_tags) > 0 do %>
     <tr>
         <td class="fic_tagname <%= f.class %>">Additional Tags:</td>
-        <td class="fic_tags" colspan="2">
-            <%= f.additional_tags |> Enum.map(fn f -> f.name end) |> Enum.join(", ") %>
+        <td class="fic_tags tag_additional" colspan="2">
+            <%= for t <- f.additional_tags do %>
+            <%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: t, path: &Routes.additional_path/4 %>
+            <% end %>
         </td>
     <tr>
     <% end %>

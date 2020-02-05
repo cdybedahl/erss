@@ -125,7 +125,8 @@ h1 {
 }
 
 .show_tag {
-    display: inline;
+    display: inline-block;
+    margin-bottom: 0em;
 }
 
 .show_tag td {
@@ -139,7 +140,7 @@ h1 {
     border: none;
     color: inherit;
     font-weight: 500;
-    font-size: 150%;
+    font-size: 125%;
     margin: 0;
     padding: 0;
     display: block;
@@ -149,7 +150,7 @@ h1 {
     margin: 0;
     padding: 0;
     font-weight: 500;
-    font-size: 125%;
+    font-size: 100%;
     width: 4rem;
     text-align: center;
     color: white;
@@ -167,4 +168,24 @@ h1 {
 
 .taglist {
     list-style-type: none;
+}
+
+.tag_additional .show_tag {
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    line-height: 1.0;
+    background-color: cornsilk;
+    border-style: groove;
+    border-color: cornsilk;
+}
+
+.tag_additional .show_tag .tag_rating {
+    background-color: inherit;
+    color: black;
+    width: auto;
+}
+
+.tag_additional .show_tag td {
+    padding: 0.25rem !important;
 }
