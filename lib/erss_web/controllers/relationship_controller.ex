@@ -8,6 +8,7 @@ defmodule ErssWeb.RelationshipController do
       from(t in Erss.Tag.Relationship, where: t.id == ^id, join: f in assoc(t, :fics), select: f)
 
     conn
+    |> put_resp_header("cache-control", "no-cache")
     |> put_view(ErssWeb.FicView)
     |> render(
       "index.html",
