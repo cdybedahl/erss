@@ -11,7 +11,7 @@ defmodule ErssWeb.ApiController do
     "category" => Erss.Tag.Category,
     "character" => Erss.Tag.Character,
     "relationship" => Erss.Tag.Relationship,
-    "warning" => Erss.Tag.Relationship
+    "warning" => Erss.Tag.Warning
   }
 
   def tagrating(conn, %{"type" => type, "id" => id, "direction" => direction, "amount" => amount}) do

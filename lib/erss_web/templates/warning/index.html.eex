@@ -1,4 +1,4 @@
-<ul>
+<ul class="taglist">
     <%= for f <- @tags do %>
         <li><%= render ErssWeb.SharedView, "tag.html", conn: @conn, tag: f, path: &Routes.warning_path/4 %></li>
     <% end %>

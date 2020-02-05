@@ -16,15 +16,15 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-document.querySelectorAll(".ratebutton").forEach( (node) => {
+document.querySelectorAll(".ratebutton").forEach((node) => {
     node.addEventListener("click", (event) => {
         let xhr = new XMLHttpRequest()
         xhr.onreadystatechange = () => {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                if(xhr.status == 200) {
+                if (xhr.status == 200) {
                     let new_tag = JSON.parse(xhr.responseText)
-                    let target = node.parentElement.querySelector(".tag_rating")
-                    target.textContent = "Weight: " + new_tag.rating
+                    let target = node.parentElement.parentElement.querySelector(".tag_rating")
+                    target.textContent = new_tag.rating
                 } else {
                     console.log("Done with error: " + xhr.status)
                 }

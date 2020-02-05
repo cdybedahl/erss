@@ -124,24 +124,47 @@ h1 {
     vertical-align: top;
 }
 
-.show_tag .buttons {
-    background-color: lightgreen;
-    display: inline-block;
-    border-radius: 8px;
-    padding: 0;
-    margin: 0;
+.show_tag {
+    display: inline;
 }
 
-.show_tag button {
+.show_tag td {
+    padding: 0.25rem;
+    margin: 0;
     border: none;
-    padding: 0;
+}
+
+.show_tag .ratebutton {
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    font-weight: 500;
     font-size: 150%;
-    background-color: lightgreen;
-    color: white;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 .show_tag .tag_rating {
-    border: none;
-    font-size: 80%;
-    color: yellow;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 125%;
+    width: 4rem;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 18px;
+}
+
+.show_tag .tag_name {
+    font-family: cursive;
+}
+
+.show_tag .tag_name a {
+    color: black;
+}
+
+.taglist {
+    list-style-type: none;
 }
