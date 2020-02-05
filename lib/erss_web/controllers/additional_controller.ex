@@ -15,7 +15,6 @@ defmodule ErssWeb.AdditionalController do
     )
   end
 
-
   def index(conn, _params) do
     tags =
       from(f in Erss.Tag.Additional, order_by: [desc: f.rating, asc: f.name])

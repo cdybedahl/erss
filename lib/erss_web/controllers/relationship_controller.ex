@@ -11,10 +11,13 @@ defmodule ErssWeb.RelationshipController do
     |> put_view(ErssWeb.FicView)
     |> render(
       "index.html",
-      ErssWeb.Helper.paged(source, fn p -> Routes.relationship_path(conn, :list, id, p) end, params)
+      ErssWeb.Helper.paged(
+        source,
+        fn p -> Routes.relationship_path(conn, :list, id, p) end,
+        params
+      )
     )
   end
-
 
   def index(conn, _params) do
     tags =

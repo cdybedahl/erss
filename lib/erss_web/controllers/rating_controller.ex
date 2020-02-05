@@ -4,8 +4,7 @@ defmodule ErssWeb.RatingController do
   import Ecto.Changeset
 
   def list(conn, params = %{"id" => id}) do
-    source =
-      from(t in Erss.Tag.Rating, where: t.id == ^id, join: f in assoc(t, :fics), select: f)
+    source = from(t in Erss.Tag.Rating, where: t.id == ^id, join: f in assoc(t, :fics), select: f)
 
     conn
     |> put_view(ErssWeb.FicView)
@@ -14,7 +13,6 @@ defmodule ErssWeb.RatingController do
       ErssWeb.Helper.paged(source, fn p -> Routes.rating_path(conn, :list, id, p) end, params)
     )
   end
-
 
   def index(conn, _params) do
     tags =

@@ -1,8 +1,8 @@
 <div class="show_tag">
     <span class="buttons">
-    <%= button("▼", to: @path.(@conn, :downrate, @tag.id, 1)) %>
+    <%= button("▼", to: @path.(@conn, :downrate, @tag.id, 1), class: "downrate") %>
     <span class="tag_rating">Weight: <%= @tag.rating %></span>
-    <%= button("▲", to: @path.(@conn, :uprate, @tag.id, 1)) %>
+    <%= button("▲", to: @path.(@conn, :uprate, @tag.id, 1), class: "uprate") %>
     </span>
     &nbsp;
     <%= link(@tag.name, to: @path.(@conn, :list, @tag.id, 1)) %>

@@ -62,8 +62,10 @@ defmodule ErssWeb.Router do
     post "/warning/:id/downrate/:amount", WarningController, :downrate
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ErssWeb do
-  #   pipe_through :api
-  # end
+  # /api/rating/4/downrate/1
+  scope "/api", ErssWeb do
+    pipe_through :api
+
+    post "/:type/:id/:direction/:amount", ApiController, :tagrating
+  end
 end

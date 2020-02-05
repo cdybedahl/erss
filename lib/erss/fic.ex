@@ -80,19 +80,20 @@ defmodule Erss.Fic do
         :warnings
       ])
 
-    sum = Enum.concat([
-      f.additional_tags,
-      [f.author],
-      f.categories,
-      f.characters,
-      f.characters,
-      f.fandoms,
-      [f.rating],
-      f.relationships,
-      f.warnings
-    ])
-    |> Enum.map(fn t -> t.rating end)
-    |> Enum.reduce(0, fn acc, t -> acc + t end)
+    sum =
+      Enum.concat([
+        f.additional_tags,
+        [f.author],
+        f.categories,
+        f.characters,
+        f.characters,
+        f.fandoms,
+        [f.rating],
+        f.relationships,
+        f.warnings
+      ])
+      |> Enum.map(fn t -> t.rating end)
+      |> Enum.reduce(0, fn acc, t -> acc + t end)
 
     if f.words < 1000 do
       sum - 2
