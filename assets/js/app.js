@@ -16,7 +16,7 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-document.querySelectorAll(".downrate").forEach( (node) => {
+document.querySelectorAll(".ratebutton").forEach( (node) => {
     node.addEventListener("click", (event) => {
         let xhr = new XMLHttpRequest()
         xhr.onreadystatechange = () => {
@@ -28,8 +28,6 @@ document.querySelectorAll(".downrate").forEach( (node) => {
                 } else {
                     console.log("Done with error: " + xhr.status)
                 }
-            } else {
-                console.log("State: " + xhr.readyState)
             }
         }
         xhr.open("POST", "/api" + node.getAttribute("data-to"))
