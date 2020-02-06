@@ -4,7 +4,7 @@ use Mix.Config
 config :erss, Erss.Repo,
   username: "calle",
   password: nil,
-  database: "erss_dev",
+  database: "erss2_dev",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
