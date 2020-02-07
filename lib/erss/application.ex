@@ -11,9 +11,10 @@ defmodule Erss.Application do
       # Start the Ecto repository
       Erss.Repo,
       # Start the endpoint when the application starts
-      ErssWeb.Endpoint
+      ErssWeb.Endpoint,
       # Starts a worker by calling: Erss.Worker.start_link(arg)
       # {Erss.Worker, arg},
+      Erss.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

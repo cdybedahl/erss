@@ -1,0 +1,8 @@
+<%= content_tag :td do %>
+    <%= content_tag :h3, @title %>
+    <ul>
+    <%= for t <- @tags do %>
+        <%= content_tag :li, t.name %>
+    <% end %>
+    </ul>
+<% end %>
