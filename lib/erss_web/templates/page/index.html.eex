@@ -1,5 +1,24 @@
-<ul>
-<%= for f <- @fics do %>
-<%= content_tag :li, f.title %>
-<% end %>
-</ul>
+<table class="table table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Rating</th>
+            <th>Title</th>
+            <th>&nbsp;</th>
+            <th>Words</th>
+            <th>Lang</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= for f <- @fics do %>
+            <%= content_tag :tr, class: f.total do %>
+                <%= content_tag :td, f.id %>
+                <%= content_tag :td, f.rating.name %>
+                <%= content_tag(:td, link(f.title, to: f.link)) %>
+                <%= content_tag(:td, Enum.join(Enum.map(f.categories, &(&1.name)), ", ") ) %>
+                <%= content_tag :td, f.words %>
+                <%= content_tag :td, f.language %>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
