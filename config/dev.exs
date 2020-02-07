@@ -2,12 +2,13 @@ use Mix.Config
 
 # Configure your database
 config :erss, Erss.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "erss_dev",
+  username: "calle",
+  password: nil,
+  database: "erss2_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  log: false
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
