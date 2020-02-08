@@ -4,12 +4,25 @@ defmodule ErssWeb.PageController do
   import Ecto.Query
   alias Erss.Repo
 
-  def index(conn, _params) do
+  @pagelen 10
+
+  def index(conn, %{"page" => page}) do
+    q =
+      from(f in Erss.Fic,
+        join: fr in "fic_ratings",
+        on: f.id == fr.fic_id,
+        where: fr.total > 0
+      )
+
+    page = String.to_integer(page)
+    maxpage = div(Repo.aggregate(q, :count), @pagelen)
+
     fics =
       from(f in Erss.Fic,
         join: fr in "fic_ratings",
         on: f.id == fr.fic_id,
         select: {f, fr.total},
+        where: fr.total > 0,
         preload: [
           :author,
           :rating,
@@ -21,14 +34,20 @@ defmodule ErssWeb.PageController do
           :relationships,
           :language
         ],
-        order_by: [desc: fr.total, desc: f.inserted_at]
+        order_by: [desc: fr.total, desc: f.inserted_at],
+        limit: @pagelen,
+        offset: @pagelen * (^page - 1)
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
         fic |> Map.put(:total, total) |> Map.put(:rclass, rating_class(total))
       end)
 
-    render(conn, "index.html", fics: fics)
+    render(conn, "index.html", fics: fics, pagelen: @pagelen, maxpage: maxpage, page: page)
+  end
+
+  def index(conn, params) do
+    index(conn, Map.put(params, "page", "1"))
   end
 
   defp rating_class(n) do

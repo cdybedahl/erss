@@ -2,7 +2,7 @@
     <%= content_tag :h3, @title %>
     <ul>
     <%= for t <- @tags do %>
-        <%= content_tag :li, t.name %>
+        <%= content_tag :li, t.name, class: "tag", tagid: t.id %>
     <% end %>
     </ul>
 <% end %>
