@@ -1,7 +1,7 @@
 <%= render("pagination.html", assigns) %>
 
 <%= for fic <- @fics do %>
-    <%= render "fic.html", fic: fic %>
+    <%= render "fic.html", fic: fic, conn: @conn %>
 <% end %>
 
 <%= render("pagination.html", assigns) %>

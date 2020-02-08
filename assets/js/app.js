@@ -18,3 +18,35 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+$(".tag").each((i, e) => {
+    let up = $(e).find(".up")
+    let down = $(e).find(".down")
+    let target = $(e).find(".rating")
+
+    up.click((event) => {
+        let url = up.attr("url")
+
+        $.post({
+            url: url,
+            dataType: "json"
+        }).done((data) => {
+            target.text(data.rating)
+        })
+
+        event.stopPropagation()
+    })
+
+    down.click((event) => {
+        let url = down.attr("url")
+
+        $.post({
+            url: url,
+            dataType: "json"
+        }).done((data) => {
+            target.text(data.rating)
+        })
+
+        event.stopPropagation()
+    })
+
+})

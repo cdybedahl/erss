@@ -6,21 +6,21 @@
     <% end %>
     <%= content_tag :tr do %>
         <%= content_tag :th do %>
-            <%= render "tag.html", tag: @fic.language %>
+            <%= render "tag.html", tag: @fic.language, conn: @conn %>
         <% end %>
         <%= content_tag :th do %>
-            <%= render "tag.html", tag: @fic.rating %>
+            <%= render "tag.html", tag: @fic.rating, conn: @conn %>
         <% end %>
         <%= content_tag :th, @fic.total %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= render("ratinglist.html", tags: @fic.categories, title: "Categories") %>
-        <%= render("ratinglist.html", tags: @fic.fandoms, title: "Fandoms") %>
-        <%= render("ratinglist.html", tags: @fic.warnings, title: "Warnings") %>
+        <%= render("ratinglist.html", tags: @fic.categories, title: "Categories", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.fandoms, title: "Fandoms", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.warnings, title: "Warnings", conn: @conn) %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= render("ratinglist.html", tags: @fic.relationships, title: "Relationships") %>
-        <%= render("ratinglist.html", tags: @fic.characters, title: "Characters") %>
-        <%= render("ratinglist.html", tags: @fic.additional_tags, title: "Additional Tags") %>
+        <%= render("ratinglist.html", tags: @fic.relationships, title: "Relationships", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.characters, title: "Characters", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.additional_tags, title: "Additional Tags", conn: @conn) %>
     <% end %>
 <% end %>

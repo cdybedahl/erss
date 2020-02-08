@@ -3,7 +3,7 @@
     <%= content_tag :ul do %>
         <%= for t <- @tags do %>
             <%= content_tag :li do %>
-                <%= render "tag.html", tag: t %>
+                <%= render "tag.html", tag: t, conn: @conn %>
             <% end %>
         <% end %>
     <% end %>

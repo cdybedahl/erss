@@ -1,7 +1,7 @@
 <%= content_tag :span, class: "tag", tagid: @tag.id do %>
-    <%= button "+", to: "#", class: "btn-light" %>
-    <%= button "-", to: "#", class: "btn-light" %>
-    <%= button @tag.rating, to: "#", disabled: true %>
+    <%= button "+", to: "#", class: "btn-light up", url: Routes.tag_path(@conn, :up, @tag.id) %>
+    <%= button "-", to: "#", class: "btn-light down", url: Routes.tag_path(@conn, :down, @tag.id) %>
+    <%= button @tag.rating, to: "#", disabled: true, class: "rating" %>
     &nbsp;
     <%= link @tag.name, to: @tag.url %>
 <% end %>
