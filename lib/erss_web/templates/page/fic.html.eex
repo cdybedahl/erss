@@ -5,7 +5,7 @@
         <% end %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= content_tag :td, @fic.language %>
+        <%= content_tag :td, @fic.language.name %>
         <%= content_tag :td, @fic.rating.name %>
         <%= content_tag :td, @fic.total %>
     <% end %>

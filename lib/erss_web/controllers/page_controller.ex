@@ -18,7 +18,8 @@ defmodule ErssWeb.PageController do
           :additional_tags,
           :warnings,
           :characters,
-          :relationships
+          :relationships,
+          :language
         ],
         order_by: [desc: fr.total, desc: f.inserted_at]
       )
