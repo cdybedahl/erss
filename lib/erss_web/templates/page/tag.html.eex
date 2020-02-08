@@ -1,0 +1,5 @@
+<%= button "+", to: "#", class: "btn-light" %>
+<%= button "-", to: "#", class: "btn-light" %>
+<%= button @tag.rating, to: "#", disabled: true %>
+&nbsp;
+<%= link @tag.name, to: @tag.url %>

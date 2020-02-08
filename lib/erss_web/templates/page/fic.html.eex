@@ -1,13 +1,17 @@
 <%= content_tag :table, class: "table table-bordered" do %>
     <%= content_tag :tr do %>
-        <%= content_tag :th, class: @fic.rclass, colspan: 5 do %>
+        <%= content_tag :th, class: "#{@fic.rclass} text-center", colspan: 5 do %>
             #<%= @fic.id %> <%= link(@fic.title, to: @fic.link) %> by <%= @fic.author.name %>
         <% end %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= content_tag :td, @fic.language.name %>
-        <%= content_tag :td, @fic.rating.name %>
-        <%= content_tag :td, @fic.total %>
+        <%= content_tag :th do %>
+            <%= render "tag.html", tag: @fic.language %>
+        <% end %>
+        <%= content_tag :th do %>
+            <%= render "tag.html", tag: @fic.rating %>
+        <% end %>
+        <%= content_tag :th, @fic.total %>
     <% end %>
     <%= content_tag :tr do %>
         <%= render("ratinglist.html", tags: @fic.categories, title: "Categories") %>

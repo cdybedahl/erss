@@ -27,4 +27,18 @@ form.button {
 
 table {
     border: thin gray solid;
+    background-color: whitesmoke;
+}
+
+td.taglist {
+    width: 33%;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0em;
+
+        li {
+            margin-left: 0em;
+        }
+    }
 }
