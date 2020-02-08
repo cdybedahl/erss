@@ -21,7 +21,10 @@ defmodule ErssWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ErssWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ErssWeb do
+    pipe_through :api
+
+    post "/tag/up/:id", TagController, :up
+    post "/tag/down/:id", TagController, :down
+  end
 end

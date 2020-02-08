@@ -1,5 +1,7 @@
-<%= button "+", to: "#", class: "btn-light" %>
-<%= button "-", to: "#", class: "btn-light" %>
-<%= button @tag.rating, to: "#", disabled: true %>
-&nbsp;
-<%= link @tag.name, to: @tag.url %>
+<%= content_tag :span, class: "tag", tagid: @tag.id do %>
+    <%= button "+", to: "#", class: "btn-light" %>
+    <%= button "-", to: "#", class: "btn-light" %>
+    <%= button @tag.rating, to: "#", disabled: true %>
+    &nbsp;
+    <%= link @tag.name, to: @tag.url %>
+<% end %>
