@@ -1,7 +1,7 @@
 <%= content_tag :table, class: "table table-bordered" do %>
     <%= content_tag :tr do %>
         <%= content_tag :th, class: @fic.rclass, colspan: 5 do %>
-            <%= link(@fic.title, to: @fic.link) %> by <%= @fic.author.name %>
+            #<%= @fic.id %> <%= link(@fic.title, to: @fic.link) %> by <%= @fic.author.name %>
         <% end %>
     <% end %>
     <%= content_tag :tr do %>

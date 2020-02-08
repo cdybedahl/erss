@@ -9,7 +9,7 @@ defmodule Erss.Fic do
     field(:words, :integer)
     field(:chapters, :integer, null: false, default: 1)
     field(:chapter_limit, :integer, null: true)
-    field(:language, :string, null: false)
+    # field(:language, :string, null: false)
     field(:link, :string, null: false)
     field(:title, :string, null: false)
     field(:updated, :string, null: false)
@@ -18,6 +18,7 @@ defmodule Erss.Fic do
 
     belongs_to(:author, Erss.Tag)
     belongs_to(:rating, Erss.Tag)
+    belongs_to(:language, Erss.Tag)
 
     many_to_many(:additional_tags, Erss.Tag,
       join_through: "additional_fic",
@@ -45,7 +46,6 @@ defmodule Erss.Fic do
         cast(%__MODULE__{}, fic, [
           :chapter_limit,
           :chapters,
-          :language,
           :link,
           :title,
           :words,
@@ -61,6 +61,7 @@ defmodule Erss.Fic do
         |> put_assoc(:warnings, Erss.Tag.get_tagset(fic.warnings))
         |> put_assoc(:author, Erss.Tag.get_or_insert(fic.author))
         |> put_assoc(:rating, Erss.Tag.get_or_insert(fic.rating))
+        |> put_assoc(:language, Erss.Tag.get_or_insert(%{name: fic.language, url: "#"}))
         |> Erss.Repo.insert!()
 
       f ->

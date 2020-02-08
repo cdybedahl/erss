@@ -17,6 +17,8 @@ defmodule Erss.Tag do
 
     has_many(:rating_fics, Erss.Fic, foreign_key: :rating_id)
     has_many(:author_fics, Erss.Fic, foreign_key: :author_id)
+    has_many(:language_fics, Erss.Fic, foreign_key: :language_id)
+
     many_to_many(:fics, Erss.Fic, join_through: "tag_fic")
 
     timestamps()
@@ -50,10 +52,6 @@ defmodule Erss.Tag do
     )
   end
 
-  def all do
-    Repo.all(__MODULE__)
-  end
-
   def all_ratings do
     from(t in Erss.Tag, join: f in Erss.Fic, on: f.rating_id == t.id, select: t, distinct: true)
   end
@@ -62,6 +60,20 @@ defmodule Erss.Tag do
     from(t in Erss.Tag,
       join: f in Erss.Fic,
       on: f.rating_id == t.id,
+      group_by: t.id,
+      select: {t, count(t.id)},
+      order_by: [desc: count(t.id)]
+    )
+  end
+
+  def all_languages do
+    from(t in Erss.Tag, join: f in Erss.Fic, on: f.language_id == t.id, select: t, distinct: true)
+  end
+
+  def all_languages_with_counts do
+    from(t in Erss.Tag,
+      join: f in Erss.Fic,
+      on: f.language_id == t.id,
       group_by: t.id,
       select: {t, count(t.id)},
       order_by: [desc: count(t.id)]
