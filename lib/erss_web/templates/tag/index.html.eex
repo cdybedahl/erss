@@ -1,5 +1,5 @@
 <%= render "pagination.html", assigns %>
-<%= content_tag :ul do %>
+<%= content_tag :ul, class: "tags" do %>
     <%= for t <- @tags do %>
         <%= content_tag :li do %>
             <%= render ErssWeb.PageView, "tag.html", tag: t, conn: @conn %>

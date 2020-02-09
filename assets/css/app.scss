@@ -52,3 +52,22 @@ table.fic {
         font-size: 75%;
     }
 }
+
+ul.tags {
+    list-style-type: none;
+    padding: 1rem;
+    margin: 0rem;
+
+    li {
+        margin: 0;
+        padding-bottom: 0.5rem;
+    }
+}
+
+nav.nav {
+    background-color: gray;
+
+    a {
+        color: yellow;
+    }
+}
