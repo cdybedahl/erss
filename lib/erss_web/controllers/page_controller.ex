@@ -7,22 +7,13 @@ defmodule ErssWeb.PageController do
   @pagelen 10
 
   def index(conn, %{"page" => page}) do
+    page = String.to_integer(page)
+
     q =
       from(f in Erss.Fic,
         join: fr in "fic_ratings",
         on: f.id == fr.fic_id,
-        where: fr.total > 0
-      )
-
-    page = String.to_integer(page)
-    maxpage = div(Repo.aggregate(q, :count), @pagelen)
-
-    fics =
-      from(f in Erss.Fic,
-        join: fr in "fic_ratings",
-        on: f.id == fr.fic_id,
         select: {f, fr.total},
-        where: fr.total > 0,
         preload: [
           :author,
           :rating,
@@ -34,7 +25,13 @@ defmodule ErssWeb.PageController do
           :relationships,
           :language
         ],
-        order_by: [desc: fr.total, desc: f.inserted_at],
+        order_by: [desc: fr.total, desc: f.inserted_at]
+      )
+
+    maxpage = div(Repo.aggregate(q, :count), @pagelen)
+
+    fics =
+      from(q,
         limit: @pagelen,
         offset: @pagelen * (^page - 1)
       )

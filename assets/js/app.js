@@ -18,7 +18,7 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
-$(".tag").each((i, e) => {
+$(".tag").each((_i, e) => {
     let up = $(e).find(".up")
     let down = $(e).find(".down")
     let target = $(e).find(".rating")

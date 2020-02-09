@@ -1,4 +1,4 @@
-defmodule ErssWeb.TagController do
+defmodule ErssWeb.ApiController do
   use ErssWeb, :controller
 
   alias Erss.Repo

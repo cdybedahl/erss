@@ -1,4 +1,4 @@
-defmodule ErssWeb.TagView do
+defmodule ErssWeb.ApiView do
   use ErssWeb, :view
 
   def render("tag.json", %{tag: tag}) do

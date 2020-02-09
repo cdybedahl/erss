@@ -18,13 +18,15 @@ defmodule ErssWeb.Router do
 
     get "/", PageController, :index
     get "/page/:page", PageController, :index
+
+    get "/tag/:type/:page", TagController, :index
   end
 
   # Other scopes may use custom stacks.
   scope "/api", ErssWeb do
     pipe_through :api
 
-    post "/tag/up/:id", TagController, :up
-    post "/tag/down/:id", TagController, :down
+    post "/up/:id", ApiController, :up
+    post "/down/:id", ApiController, :down
   end
 end
