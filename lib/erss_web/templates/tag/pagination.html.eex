@@ -1,0 +1,29 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <%= if @page > 1 do %>
+    <%= content_tag :li, class: "page-item" do %>
+        <%= link "First", to: Routes.tag_path(@conn, :index, @type, 1), class: "page-link" %>
+    <% end %>
+    <li class="page-item"><a class="page-link" href="<%= Routes.tag_path(@conn, :index, @type, @page - 1) %>">Previous</a></li>
+    <% else %>
+    <%= content_tag :li, class: "page-item disabled" do %>
+        <%= link "First", to: Routes.tag_path(@conn, :index, @type, 1), class: "page-link" %>
+    <% end %>
+    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+    <% end %>
+    <%= content_tag :li, class: "page-item disabled" do %>
+        <%= link "#{@page} of #{@maxpage}", to: "#", class: "page-link" %>
+    <% end %>
+    <%= if @page < @maxpage do %>
+    <li class="page-item"><a class="page-link" href="<%= Routes.tag_path(@conn, :index, @type, @page + 1) %>">Next</a></li>
+    <%= content_tag :li, class: "page-item" do %>
+        <%= link "Last", to: Routes.tag_path(@conn, :index, @type, @maxpage), class: "page-link" %>
+    <% end %>
+    <% else  %>
+    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+    <%= content_tag :li, class: "page-item disabled" do %>
+        <%= link "Last", to: Routes.tag_path(@conn, :index, @type, @maxpage), class: "page-link" %>
+    <% end %>
+    <% end %>
+  </ul>
+</nav>

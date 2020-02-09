@@ -9,9 +9,14 @@
     <%= csrf_meta_tag() %>
   </head>
   <body>
-    <nav class="nav nav-tabs">
-      <%= link "Fics", to: Routes.page_path(@conn, :index), class: "nav-item nav-link active" %>
-
+    <nav class="nav justify-content-center nav-justified">
+      <%= link "Fics", to: Routes.page_path(@conn, :index), class: "nav-item nav-link" %>
+      <%= link "Additional Tags", to: Routes.tag_path(@conn, :index, "additional", 1), class: "nav-item nav-link" %>
+      <%= link "Categories", to: Routes.tag_path(@conn, :index, "category", 1), class: "nav-item nav-link" %>
+      <%= link "Characters", to: Routes.tag_path(@conn, :index, "character", 1), class: "nav-item nav-link" %>
+      <%= link "Fandoms", to: Routes.tag_path(@conn, :index, "fandom", 1), class: "nav-item nav-link" %>
+      <%= link "Relationships", to: Routes.tag_path(@conn, :index, "relationship", 1), class: "nav-item nav-link" %>
+      <%= link "Warnings", to: Routes.tag_path(@conn, :index, "warning", 1), class: "nav-item nav-link" %>
     </nav>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
