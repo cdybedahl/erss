@@ -22,22 +22,24 @@ defmodule ErssWeb.TagController do
   end
 
   defp type_to_source(type) do
-    table =
+    assoc =
       Map.get(
         %{
-          "fandom" => "fandom_fic",
-          "additional" => "additional_fic",
-          "category" => "category_fic",
-          "character" => "character_fic",
-          "relationship" => "relationship_fic",
-          "warning" => "warning_fic"
+          "author" => :author_fics,
+          "fandom" => :fandom_fics,
+          "additional" => :additional_fics,
+          "category" => :category_fics,
+          "character" => :character_fics,
+          "language" => :language_fics,
+          "rating" => :rating_fics,
+          "relationship" => :relationship_fics,
+          "warning" => :warning_fics
         },
         type
       )
 
     from(t in Erss.Tag,
-      join: j in ^table,
-      on: t.id == j.tag_id,
+      join: j in assoc(t, ^assoc),
       select: t,
       distinct: true,
       order_by: [desc: t.rating, asc: t.name]
