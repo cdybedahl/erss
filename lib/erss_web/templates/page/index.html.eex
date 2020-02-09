@@ -1,5 +1,7 @@
 <%= render("pagination.html", assigns) %>
 
+<%= content_tag :h1, @title, class: "ficlist" %>
+
 <%= for fic <- @fics do %>
     <%= render "fic.html", fic: fic, conn: @conn %>
 <% end %>

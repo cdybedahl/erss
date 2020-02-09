@@ -44,6 +44,8 @@ td.taglist {
 }
 
 table.fic {
+    margin-top: 0;
+
     .title {
         font-size: 125%;
     }
@@ -70,4 +72,15 @@ nav.nav {
     a {
         color: yellow;
     }
+}
+
+h1.ficlist {
+    font-family: cursive;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 1rem;
+    background-color: lavender;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 }

@@ -3,5 +3,5 @@
     <%= button "-", to: "#", class: "btn-light down", url: Routes.api_path(@conn, :down, @tag.id) %>
     <%= button @tag.rating, to: "#", disabled: true, class: "rating" %>
     &nbsp;
-    <%= link @tag.name, to: @tag.url %>
+    <%= link @tag.name, to: Routes.page_path(@conn, :by_tag, @tag.id, 1) %>
 <% end %>
