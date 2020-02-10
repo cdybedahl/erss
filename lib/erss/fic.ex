@@ -64,8 +64,8 @@ defmodule Erss.Fic do
         |> put_assoc(:language, Erss.Tag.get_or_insert(%{name: fic.language, url: "#"}))
         |> Erss.Repo.insert!()
 
-      f ->
-        f
+      _ ->
+        false
     end
   end
 

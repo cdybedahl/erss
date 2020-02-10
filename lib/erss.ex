@@ -18,7 +18,8 @@ defmodule Erss do
 
   def get_and_store_feed do
     get_feed()
-    |> Enum.each(&Erss.Fic.get_or_insert/1)
+    |> Enum.filter(&Erss.Fic.get_or_insert/1)
+    |> Enum.count()
   end
 
   defp process_body(body) do
