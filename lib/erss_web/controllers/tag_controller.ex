@@ -9,10 +9,13 @@ defmodule ErssWeb.TagController do
   def index(conn, %{"type" => type, "page" => page}) do
     q = type_to_source(type)
     page = String.to_integer(page)
-    maxpage = div(Repo.aggregate(q, :count), @pagelen)
+    maxpage = div(Repo.aggregate(from(f in q, select: f, distinct: true), :count), @pagelen)
 
     tags =
-      from(q,
+      from(t in q,
+        select: {t, count(t.id)},
+        group_by: t.id,
+        order_by: [desc: t.rating, asc: t.name],
         limit: @pagelen,
         offset: @pagelen * (^page - 1)
       )
@@ -39,10 +42,7 @@ defmodule ErssWeb.TagController do
       )
 
     from(t in Erss.Tag,
-      join: j in assoc(t, ^assoc),
-      select: t,
-      distinct: true,
-      order_by: [desc: t.rating, asc: t.name]
+      join: j in assoc(t, ^assoc)
     )
   end
 end
