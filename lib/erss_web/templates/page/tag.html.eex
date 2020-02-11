@@ -1,4 +1,4 @@
-<%= content_tag :span, class: "tag", tagid: @tag.id do %>
+<%= content_tag :span, class: "tag #{Erss.Tag.rating_class(@tag)}", tagid: @tag.id do %>
     <%= button "+", to: "#", class: "btn-light up", url: Routes.api_path(@conn, :up, @tag.id) %>
     <%= button "-", to: "#", class: "btn-light down", url: Routes.api_path(@conn, :down, @tag.id) %>
     <%= button @tag.rating, to: "#", disabled: true, class: "rating" %>

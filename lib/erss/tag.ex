@@ -36,4 +36,17 @@ defmodule Erss.Tag do
   def get_tagset(list) do
     Enum.map(list, &get_or_insert/1)
   end
+
+  def rating_class(tag) do
+    cond do
+      tag.rating > 0 ->
+        "good_tag"
+
+      tag.rating < 0 ->
+        "bad_tag"
+
+      true ->
+        "neutral_tag"
+    end
+  end
 end

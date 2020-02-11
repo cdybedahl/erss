@@ -84,3 +84,15 @@ h1.ficlist {
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
 }
+
+.good_tag {
+    a {
+        color: limegreen;
+    }
+}
+
+.bad_tag {
+    a {
+        color: red;
+    }
+}
