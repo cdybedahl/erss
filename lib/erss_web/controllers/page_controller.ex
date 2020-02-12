@@ -29,11 +29,11 @@ defmodule ErssWeb.PageController do
 
     q =
       case get_session(conn, :sort_by) do
-        "rating" ->
-          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
-
         "order" ->
           from(f in q, order_by: [desc: f.id])
+
+        _ ->
+          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
       end
 
     q =
@@ -41,7 +41,7 @@ defmodule ErssWeb.PageController do
         "true" ->
           from([f, fr] in q, where: fr.total > 0)
 
-        "false" ->
+        _ ->
           q
       end
 
