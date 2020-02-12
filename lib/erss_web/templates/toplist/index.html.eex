@@ -1,0 +1,19 @@
+<%= for {title, data} <- @table_data do %>
+    <table class="table table-bordered">
+        <%= content_tag :tr do %>
+            <%= content_tag :th, colspan: 2 do %>
+                <%= content_tag :h1, title %>
+            <% end %>
+        <% end %>
+        <%= content_tag :tr do %>
+            <%= content_tag :th, "Tag" %>
+            <%= content_tag :th, "Number of fics" %>
+        <% end %>
+    <%= for %{tag: t, count: c} <- data do %>
+        <%= content_tag :tr do %>
+            <%= content_tag :td, render(ErssWeb.PageView, "tag.html", tag: t, conn: @conn) %>
+            <%= content_tag :td, c %>
+        <% end %>
+    <% end %>
+    </table>
+<% end %>

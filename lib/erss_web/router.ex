@@ -22,6 +22,8 @@ defmodule ErssWeb.Router do
     post "/page/sort_by", PageController, :sort_by
 
     get "/tag/:type/:page", TagController, :index
+
+    get "/toplist", ToplistController, :index
   end
 
   # Other scopes may use custom stacks.
