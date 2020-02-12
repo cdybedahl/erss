@@ -9,17 +9,24 @@
     <%= csrf_meta_tag() %>
   </head>
   <body>
-    <nav class="nav justify-content-center nav-justified">
-      <%= link "Fics", to: Routes.page_path(@conn, :index), class: "nav-item nav-link" %>
-      <%= link "Additional", to: Routes.tag_path(@conn, :index, "additional", 1), class: "nav-item nav-link" %>
-      <%= link "Authors", to: Routes.tag_path(@conn, :index, "author", 1), class: "nav-item nav-link" %>
-      <%= link "Categories", to: Routes.tag_path(@conn, :index, "category", 1), class: "nav-item nav-link" %>
-      <%= link "Characters", to: Routes.tag_path(@conn, :index, "character", 1), class: "nav-item nav-link" %>
-      <%= link "Fandoms", to: Routes.tag_path(@conn, :index, "fandom", 1), class: "nav-item nav-link" %>
-      <%= link "Language", to: Routes.tag_path(@conn, :index, "language", 1), class: "nav-item nav-link" %>
-      <%= link "Rating", to: Routes.tag_path(@conn, :index, "rating", 1), class: "nav-item nav-link" %>
-      <%= link "Relationships", to: Routes.tag_path(@conn, :index, "relationship", 1), class: "nav-item nav-link" %>
-      <%= link "Warnings", to: Routes.tag_path(@conn, :index, "warning", 1), class: "nav-item nav-link" %>
+    <nav class="navbar navbar-light bg-light">
+    <ul class="nav nav-pills">
+      <%= content_tag :li, link("Fics", to: Routes.page_path(@conn, :index)), class: "nav-item nav-link" %>
+      <%= content_tag :li, class: "nav-item dropdown" do %>
+        <%= link "Tags", to: "#", class: "nav-link dropdown-toggle", data_toggle: "dropdown" %>
+        <%= content_tag :div, class: "dropdown-menu" do %>
+          <%= link "Additional", to: Routes.tag_path(@conn, :index, "additional", 1), class: "dropdown-item" %>
+          <%= link "Authors", to: Routes.tag_path(@conn, :index, "author", 1), class: "dropdown-item" %>
+          <%= link "Categories", to: Routes.tag_path(@conn, :index, "category", 1), class: "dropdown-item" %>
+          <%= link "Characters", to: Routes.tag_path(@conn, :index, "character", 1), class: "dropdown-item" %>
+          <%= link "Fandoms", to: Routes.tag_path(@conn, :index, "fandom", 1), class: "dropdown-item" %>
+          <%= link "Language", to: Routes.tag_path(@conn, :index, "language", 1), class: "dropdown-item" %>
+          <%= link "Rating", to: Routes.tag_path(@conn, :index, "rating", 1), class: "dropdown-item" %>
+          <%= link "Relationships", to: Routes.tag_path(@conn, :index, "relationship", 1), class: "dropdown-item" %>
+          <%= link "Warnings", to: Routes.tag_path(@conn, :index, "warning", 1), class: "dropdown-item" %>
+        <% end %>
+      <% end %>
+    </ul>
     </nav>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
