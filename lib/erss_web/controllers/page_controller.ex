@@ -29,11 +29,19 @@ defmodule ErssWeb.PageController do
 
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
+    q =
+      case get_session(conn, :sort_by) do
+        "rating" ->
+          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
+
+        "order" ->
+          from(f in q, order_by: [desc: f.id])
+      end
+
     fics =
       from([f, fr] in q,
         limit: @pagelen,
-        offset: @pagelen * (^page - 1),
-        order_by: [desc: fr.total, desc: f.inserted_at]
+        offset: @pagelen * (^page - 1)
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
@@ -82,13 +90,21 @@ defmodule ErssWeb.PageController do
         ]
       )
 
+    q =
+      case get_session(conn, :sort_by) do
+        "rating" ->
+          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
+
+        "order" ->
+          from(f in q, order_by: [desc: f.id])
+      end
+
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
       from([f, fr] in q,
         limit: @pagelen,
-        offset: @pagelen * (^page - 1),
-        order_by: [desc: fr.total, desc: f.inserted_at]
+        offset: @pagelen * (^page - 1)
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
@@ -102,6 +118,17 @@ defmodule ErssWeb.PageController do
       page: page,
       title: "Fics tagged '#{tag.name}'"
     )
+  end
+
+  def sort_by(conn, %{"sort_by" => type}) do
+    case type do
+      "order" ->
+        put_session(conn, :sort_by, "order")
+
+      _ ->
+        put_session(conn, :sort_by, "rating")
+    end
+    |> redirect(to: "/")
   end
 
   defp rating_class(n) do
