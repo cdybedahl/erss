@@ -27,8 +27,6 @@ defmodule ErssWeb.PageController do
         ]
       )
 
-    maxpage = div(Repo.aggregate(q, :count), @pagelen)
-
     q =
       case get_session(conn, :sort_by) do
         "rating" ->
@@ -37,6 +35,17 @@ defmodule ErssWeb.PageController do
         "order" ->
           from(f in q, order_by: [desc: f.id])
       end
+
+    q =
+      case get_session(conn, :hide_negative) do
+        "true" ->
+          from([f, fr] in q, where: fr.total > 0)
+
+        "false" ->
+          q
+      end
+
+    maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
       from([f, fr] in q,
@@ -99,6 +108,15 @@ defmodule ErssWeb.PageController do
           from(f in q, order_by: [desc: f.id])
       end
 
+    q =
+      case get_session(conn, :hide_negative) do
+        "true" ->
+          from([f, fr] in q, where: fr.total > 0)
+
+        "false" ->
+          q
+      end
+
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
@@ -120,15 +138,26 @@ defmodule ErssWeb.PageController do
     )
   end
 
-  def sort_by(conn, %{"sort_by" => type}) do
-    case type do
-      "order" ->
-        put_session(conn, :sort_by, "order")
+  def sort_by(conn, %{"sort_by" => type, "hide_negative" => hide}) do
+    conn =
+      case type do
+        "order" ->
+          put_session(conn, :sort_by, "order")
 
-      _ ->
-        put_session(conn, :sort_by, "rating")
-    end
-    |> redirect(to: "/")
+        _ ->
+          put_session(conn, :sort_by, "rating")
+      end
+
+    conn =
+      case hide do
+        "true" ->
+          put_session(conn, :hide_negative, "true")
+
+        "false" ->
+          put_session(conn, :hide_negative, "false")
+      end
+
+    redirect(conn, to: "/")
   end
 
   defp rating_class(n) do
