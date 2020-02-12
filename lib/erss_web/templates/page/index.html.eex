@@ -1,10 +1,10 @@
-<%= render("pagination.html", assigns) %>
-
-<%= form_for @conn, Routes.page_path(@conn, :sort_by), fn f -> %>
+<%= form_for @conn, Routes.page_path(@conn, :sort_by), [class: "option_form"], fn f -> %>
     <label>Sort by: <%= select f, :sort_by, ["rating", "order"], selected: Plug.Conn.get_session(@conn, :sort_by) %></label>
     <label>Hide negative-rated: <%= checkbox f, :hide_negative, value: Plug.Conn.get_session(@conn, :hide_negative) %></label>
     <%= submit "Save" %>
 <% end %>
+
+<%= render("pagination.html", assigns) %>
 
 <%= content_tag :h1, @title, class: "ficlist" %>
 
