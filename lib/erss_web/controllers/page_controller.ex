@@ -24,16 +24,16 @@ defmodule ErssWeb.PageController do
           :characters,
           :relationships,
           :language
-        ],
-        order_by: [desc: fr.total, desc: f.inserted_at]
+        ]
       )
 
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
-      from(q,
+      from([f, fr] in q,
         limit: @pagelen,
-        offset: @pagelen * (^page - 1)
+        offset: @pagelen * (^page - 1),
+        order_by: [desc: fr.total, desc: f.inserted_at]
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
@@ -79,16 +79,16 @@ defmodule ErssWeb.PageController do
           :characters,
           :relationships,
           :language
-        ],
-        order_by: [desc: fr.total, desc: f.inserted_at]
+        ]
       )
 
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
-      from(q,
+      from([f, fr] in q,
         limit: @pagelen,
-        offset: @pagelen * (^page - 1)
+        offset: @pagelen * (^page - 1),
+        order_by: [desc: fr.total, desc: f.inserted_at]
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
