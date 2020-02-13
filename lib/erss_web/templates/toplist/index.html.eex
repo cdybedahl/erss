@@ -1,7 +1,3 @@
-<form id="search" action="#">
-    <input type="text">
-</form>
-
 <%= for {title, data} <- @table_data do %>
     <table class="table table-bordered">
         <%= content_tag :tr do %>
