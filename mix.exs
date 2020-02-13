@@ -52,7 +52,8 @@ defmodule Erss.MixProject do
       {:httpoison, "~> 1.6"},
       {:meeseeks, "~> 0.14.0"},
       {:quantum, "~> 2.3"},
-      {:timex, "~> 3.6"}
+      {:timex, "~> 3.6"},
+      {:tzdata, "~> 1.0"}
     ]
   end
 
