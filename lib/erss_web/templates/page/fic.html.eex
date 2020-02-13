@@ -9,12 +9,12 @@
     <%= content_tag :tr do %>
         <%= content_tag :td, "#{@fic.words} words" %>
         <%= content_tag :td do %>
-            <%= @fic.chapters %> chapter(s)
+            <%= @fic.chapters %> chapter<%= if @fic.chapters > 1, do: "s" %>
             <%= if @fic.chapter_limit == nil do %>
             (unfinished)
             <% end %>
         <% end %>
-        <%= content_tag :td, @fic.updated %>
+        <%= content_tag :td, Timex.parse!(@fic.updated, "{ISO:Extended}") |> Timex.format!("%F %R", :strftime) %>
     <% end %>
     <%= content_tag :tr do %>
         <%= content_tag :th do %>
