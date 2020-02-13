@@ -7,6 +7,16 @@
         <% end %>
     <% end %>
     <%= content_tag :tr do %>
+        <%= content_tag :td, "#{@fic.words} words" %>
+        <%= content_tag :td do %>
+            <%= @fic.chapters %> chapter(s)
+            <%= if @fic.chapter_limit == nil do %>
+            (unfinished)
+            <% end %>
+        <% end %>
+        <%= content_tag :td, @fic.updated %>
+    <% end %>
+    <%= content_tag :tr do %>
         <%= content_tag :th do %>
             <%= render "tag.html", tag: @fic.language, conn: @conn %>
         <% end %>
