@@ -32,5 +32,7 @@ defmodule ErssWeb.Router do
 
     post "/up/:id", ApiController, :up
     post "/down/:id", ApiController, :down
+
+    post "/find_tag", ApiController, :find_tag
   end
 end

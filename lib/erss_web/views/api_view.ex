@@ -9,4 +9,15 @@ defmodule ErssWeb.ApiView do
       rating: tag.rating
     }
   end
+
+  def render("tags.json", %{tags: tags}) do
+    Enum.map(tags, fn tag ->
+      %{
+        id: tag.id,
+        name: tag.name,
+        url: tag.url,
+        rating: tag.rating
+      }
+    end)
+  end
 end

@@ -50,3 +50,22 @@ $(".tag").each((_i, e) => {
     })
 
 })
+
+$("#search input").each((_i, e) => {
+    let f = $(e)
+    let target = $("#result")
+
+    f.keyup((e) => {
+        $.post({
+            url: f.attr("url"),
+            dataType: "json",
+            data: {
+                term: f.val()
+            }
+        }).done((data) => {
+            target.html(data.map((o) => {
+                return '<li><a href="/by_tag/' + o.id + '/1">' + o.name + '</a></li>'
+            }))
+        })
+    })
+})
