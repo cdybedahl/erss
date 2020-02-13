@@ -20,6 +20,7 @@ defmodule ErssWeb.Router do
     get "/page/:page", PageController, :index
     get "/by_tag/:id/:page", PageController, :by_tag
     post "/page/sort_by", PageController, :sort_by
+    get "/search", PageController, :search
 
     get "/tag/:type/:page", TagController, :index
 

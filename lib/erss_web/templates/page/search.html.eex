@@ -1,0 +1,6 @@
+<form id="search" action="#">
+    Search: <%= tag :input, type: "textfield", url: Routes.api_path(@conn, :find_tag) %>
+</form>
+<%= content_tag :ol, id: "result" do %>
+
+<% end %>

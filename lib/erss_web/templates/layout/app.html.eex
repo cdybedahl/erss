@@ -27,6 +27,7 @@
           <% end %>
         <% end %>
         <%= content_tag :li, link("Toplists", to: Routes.toplist_path(@conn, :index), class: "nav-link"), class: "nav-item" %>
+        <%= content_tag :li, link("Search", to: Routes.page_path(@conn, :search), class: "nav-link"), class: "nav-item" %>
       </ul>
     </nav>
     <main role="main" class="container">

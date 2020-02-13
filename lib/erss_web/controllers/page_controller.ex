@@ -160,6 +160,10 @@ defmodule ErssWeb.PageController do
     redirect(conn, to: "/")
   end
 
+  def search(conn, _params) do
+    render(conn, "search.html")
+  end
+
   defp rating_class(n) do
     cond do
       n > 2 ->
