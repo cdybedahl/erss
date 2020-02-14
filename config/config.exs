@@ -32,6 +32,10 @@ config :erss, Erss.Scheduler,
     {"*/15 * * * *", {Erss, :get_and_store_feed, []}}
   ]
 
+config :erss, :pow,
+  user: Erss.Users.User,
+  repo: Erss.Repo
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

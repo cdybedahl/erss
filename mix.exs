@@ -53,7 +53,8 @@ defmodule Erss.MixProject do
       {:meeseeks, "~> 0.14.0"},
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.6"},
-      {:tzdata, "~> 1.0"}
+      {:tzdata, "~> 1.0"},
+      {:pow, "~> 1.0.17"}
     ]
   end
 
