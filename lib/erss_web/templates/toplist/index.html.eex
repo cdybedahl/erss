@@ -1,3 +1,17 @@
+<table class="table table-bordered">
+    <tr>
+        <th colspan="2"><h2>Total</h2></th>
+    </tr>
+    <tr>
+        <%= content_tag :td, "Fics" %>
+        <%= content_tag :td, @fic_count %>
+    </tr>
+    <tr>
+        <%= content_tag :td, "Tags" %>
+        <%= content_tag :td, @tag_count %>
+    </tr>
+</table>
+
 <%= for {title, data} <- @table_data do %>
     <table class="table table-bordered">
         <%= content_tag :tr do %>

@@ -18,7 +18,9 @@ defmodule ErssWeb.ToplistController do
 
   def index(conn, _params) do
     table_data = Enum.map(@types, &get_data/1)
-    render(conn, "index.html", table_data: table_data)
+    fic_count = Repo.aggregate(Erss.Fic, :count)
+    tag_count = Repo.aggregate(Erss.Tag, :count)
+    render(conn, "index.html", table_data: table_data, fic_count: fic_count, tag_count: tag_count)
   end
 
   defp get_data({title, assoc}) do
