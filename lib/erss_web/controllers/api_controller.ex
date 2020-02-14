@@ -27,8 +27,14 @@ defmodule ErssWeb.ApiController do
     search = "%" <> term <> "%"
 
     tags =
-      from(t in Erss.Tag, where: like(t.name, ^search), order_by: [desc: t.name], limit: 200)
-      |> Repo.all()
+      cond do
+        String.length(term) < 2 ->
+          []
+
+        true ->
+          from(t in Erss.Tag, where: like(t.name, ^search), order_by: [desc: t.name], limit: 200)
+          |> Repo.all()
+      end
 
     render(conn, "tags.json", tags: tags)
   end
