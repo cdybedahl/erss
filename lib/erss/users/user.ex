@@ -5,6 +5,8 @@ defmodule Erss.Users.User do
   schema "users" do
     pow_user_fields()
 
+    has_many(:reading_lists, Erss.ReadingList)
+
     timestamps()
   end
 end
