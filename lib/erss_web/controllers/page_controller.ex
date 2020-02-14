@@ -37,12 +37,12 @@ defmodule ErssWeb.PageController do
       end
 
     q =
-      case get_session(conn, :hide_negative) do
-        "true" ->
-          from([f, fr] in q, where: fr.total > 0)
-
-        _ ->
+      case get_session(conn, :show_minimum) do
+        nil ->
           q
+
+        n when is_integer(n) ->
+          from([f, fr] in q, where: fr.total >= ^n)
       end
 
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
@@ -109,12 +109,12 @@ defmodule ErssWeb.PageController do
       end
 
     q =
-      case get_session(conn, :hide_negative) do
-        "true" ->
-          from([f, fr] in q, where: fr.total > 0)
-
-        "false" ->
+      case get_session(conn, :show_minimum) do
+        nil ->
           q
+
+        n when is_integer(n) ->
+          from([f, fr] in q, where: fr.total >= ^n)
       end
 
     maxpage = div(Repo.aggregate(q, :count), @pagelen)
@@ -138,7 +138,7 @@ defmodule ErssWeb.PageController do
     )
   end
 
-  def sort_by(conn, %{"sort_by" => type, "hide_negative" => hide}) do
+  def sort_by(conn, %{"sort_by" => type, "show_minimum" => show_minimum}) do
     conn =
       case type do
         "order" ->
@@ -149,12 +149,12 @@ defmodule ErssWeb.PageController do
       end
 
     conn =
-      case hide do
-        "true" ->
-          put_session(conn, :hide_negative, "true")
+      case Integer.parse(show_minimum) do
+        {n, ""} ->
+          put_session(conn, :show_minimum, n)
 
-        "false" ->
-          put_session(conn, :hide_negative, "false")
+        _ ->
+          conn
       end
 
     redirect(conn, to: "/")

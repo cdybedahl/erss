@@ -1,6 +1,6 @@
 <%= form_for @conn, Routes.page_path(@conn, :sort_by), [class: "option_form"], fn f -> %>
     <label>Sort by: <%= select f, :sort_by, ["rating", "order"], selected: Plug.Conn.get_session(@conn, :sort_by) %></label>
-    <label>Hide negative-rated: <%= checkbox f, :hide_negative, value: Plug.Conn.get_session(@conn, :hide_negative) %></label>
+    <label>Hide ranked lower than <%= select f, :show_minimum, 10..-10, value: Plug.Conn.get_session(@conn, :show_minimum) %></label>
     <%= submit "Save" %>
 <% end %>
 
