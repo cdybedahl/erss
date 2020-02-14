@@ -116,7 +116,7 @@ defmodule ErssWeb.PageController do
     {fics, maxpage}
   end
 
-  def sort_by(conn, %{"sort_by" => type, "show_minimum" => show_minimum}) do
+  def sort_by(conn, %{"sort_by" => type, "show_minimum" => show_minimum, "request_path" => path}) do
     conn =
       case type do
         "order" ->
@@ -135,7 +135,7 @@ defmodule ErssWeb.PageController do
           conn
       end
 
-    redirect(conn, to: "/")
+    redirect(conn, to: path)
   end
 
   def search(conn, _params) do
