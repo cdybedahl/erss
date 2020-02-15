@@ -34,7 +34,9 @@ config :erss, Erss.Scheduler,
 
 config :erss, :pow,
   user: Erss.Users.User,
-  repo: Erss.Repo
+  repo: Erss.Repo,
+  extensions: [PowPersistentSession],
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
