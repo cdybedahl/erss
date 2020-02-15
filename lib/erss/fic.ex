@@ -79,4 +79,16 @@ defmodule Erss.Fic do
   def all do
     Repo.all(__MODULE__)
   end
+
+  def get_description(fic) do
+    re = ~r[^<p>by <a rel="author" href=".*?</a></p>(.*)<p>Words: .*]
+
+    case Regex.run(re, fic.raw) do
+      [_, before] ->
+        before
+
+      _ ->
+        "Bugger"
+    end
+  end
 end

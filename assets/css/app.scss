@@ -53,6 +53,12 @@ table.fic {
     .author {
         font-size: 75%;
     }
+
+    .summary {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        background-color: rgb(245, 245, 230);
+    }
 }
 
 ul.tags {
@@ -98,4 +104,8 @@ h1.ficlist {
 
 .option_form label {
     padding-right: 1rem;
+}
+
+.reading_list_checkbox {
+    float: right;
 }
