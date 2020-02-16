@@ -32,7 +32,7 @@ defmodule ErssWeb.ApiController do
           []
 
         true ->
-          from(t in Erss.Tag, where: like(t.name, ^search), order_by: [desc: t.name], limit: 200)
+          from(t in Erss.Tag, where: ilike(t.name, ^search), order_by: [desc: t.name], limit: 200)
           |> Repo.all()
       end
 
