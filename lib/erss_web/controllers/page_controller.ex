@@ -13,18 +13,7 @@ defmodule ErssWeb.PageController do
       from(f in Erss.Fic,
         join: fr in "fic_ratings",
         on: f.id == fr.fic_id,
-        select: {f, fr.total},
-        preload: [
-          :author,
-          :rating,
-          :categories,
-          :fandoms,
-          :additional_tags,
-          :warnings,
-          :characters,
-          :relationships,
-          :language
-        ]
+        select: {f, fr.total}
       )
 
     {fics, maxpage} = filter(conn, q, page)
@@ -58,18 +47,7 @@ defmodule ErssWeb.PageController do
         ),
         join: fr in "fic_ratings",
         on: f.id == fr.fic_id,
-        select: {f, fr.total},
-        preload: [
-          :author,
-          :rating,
-          :categories,
-          :fandoms,
-          :additional_tags,
-          :warnings,
-          :characters,
-          :relationships,
-          :language
-        ]
+        select: {f, fr.total}
       )
 
     {fics, maxpage} = filter(conn, q, page)
@@ -82,40 +60,6 @@ defmodule ErssWeb.PageController do
       title: "Fics tagged '#{tag.name}'",
       route: fn page -> ErssWeb.Router.Helpers.page_path(conn, :by_tag, id, page) end
     )
-  end
-
-  defp filter(conn, q, page) do
-    q =
-      case get_session(conn, :sort_by) do
-        "rating" ->
-          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
-
-        "order" ->
-          from(f in q, order_by: [desc: f.id])
-      end
-
-    q =
-      case get_session(conn, :show_minimum) do
-        nil ->
-          q
-
-        n when is_integer(n) ->
-          from([f, fr] in q, where: fr.total >= ^n)
-      end
-
-    maxpage = 1 + div(Repo.aggregate(q, :count), @pagelen)
-
-    fics =
-      from([f, fr] in q,
-        limit: @pagelen,
-        offset: @pagelen * (^page - 1)
-      )
-      |> Repo.all()
-      |> Enum.map(fn {fic, total} ->
-        fic |> Map.put(:total, total) |> Map.put(:rclass, rating_class(total))
-      end)
-
-    {fics, maxpage}
   end
 
   def sort_by(conn, %{"sort_by" => type, "show_minimum" => show_minimum, "request_path" => path}) do
@@ -150,18 +94,7 @@ defmodule ErssWeb.PageController do
         on: f.id == fr.fic_id,
         join: r in assoc(f, :reading_list),
         where: r.user_id == ^user.id,
-        select: {f, fr.total},
-        preload: [
-          :author,
-          :rating,
-          :categories,
-          :fandoms,
-          :additional_tags,
-          :warnings,
-          :characters,
-          :relationships,
-          :language
-        ]
+        select: {f, fr.total}
       )
 
     {fics, maxpage} = filter(conn, q, page)
@@ -178,6 +111,55 @@ defmodule ErssWeb.PageController do
 
   def search(conn, _params) do
     render(conn, "search.html")
+  end
+
+  ###
+  ### Private functions.
+  ###
+
+  defp filter(conn, q, page) do
+    q =
+      case get_session(conn, :sort_by) do
+        "rating" ->
+          from([f, fr] in q, order_by: [desc: fr.total, desc: f.inserted_at])
+
+        "order" ->
+          from(f in q, order_by: [desc: f.id])
+      end
+
+    q =
+      case get_session(conn, :show_minimum) do
+        nil ->
+          q
+
+        n when is_integer(n) ->
+          from([f, fr] in q, where: fr.total >= ^n)
+      end
+
+    maxpage = 1 + div(Repo.aggregate(q, :count), @pagelen)
+
+    fics =
+      from([f, fr] in q,
+        limit: @pagelen,
+        offset: @pagelen * (^page - 1),
+        preload: [
+          :author,
+          :rating,
+          :categories,
+          :fandoms,
+          :additional_tags,
+          :warnings,
+          :characters,
+          :relationships,
+          :language
+        ]
+      )
+      |> Repo.all()
+      |> Enum.map(fn {fic, total} ->
+        fic |> Map.put(:total, total) |> Map.put(:rclass, rating_class(total))
+      end)
+
+    {fics, maxpage}
   end
 
   defp rating_class(n) do
