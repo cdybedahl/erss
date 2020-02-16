@@ -17,9 +17,15 @@ defmodule Erss do
   end
 
   def get_and_store_feed do
-    get_feed()
-    |> Enum.filter(&Erss.Fic.get_or_insert/1)
-    |> Enum.count()
+    case get_feed() do
+      :timeout ->
+        :timeout
+
+      list when is_list(list) ->
+        list
+        |> Enum.filter(&Erss.Fic.get_or_insert/1)
+        |> Enum.count()
+    end
   end
 
   defp process_body(body) do
