@@ -1,7 +1,7 @@
 <%= content_tag :table, class: "table table-bordered fic" do %>
     <%= content_tag :tr do %>
         <%= content_tag :th, class: "#{@fic.rclass} text-center", colspan: 5 do %>
-            <%= tag :input, type: "checkbox", class: "reading_list_checkbox", ficid: @fic.id %>
+            <%= tag :input, type: "checkbox", class: "reading_list_checkbox", ficid: @fic.id, checked: Erss.ReadingList.is_read(@fic, @current_user) %>
             <span class="title">#<%= @fic.id %> <%= link(@fic.title, to: @fic.link, target: "_blank") %></span>
             <br>
             <span class="author">by <%= render "tag.html", tag: @fic.author, conn: @conn %></span>

@@ -55,5 +55,6 @@ defmodule ErssWeb.Router do
     post "/down/:id", ApiController, :down
 
     post "/find_tag", ApiController, :find_tag
+    post "/set_read", ApiController, :set_read
   end
 end

@@ -69,3 +69,21 @@ $("#search input").each((_i, e) => {
         })
     })
 })
+
+$(".reading_list_checkbox").each((_i, e) => {
+    let f = $(e)
+    let ficid = f.attr("ficid")
+
+    f.change((event) => {
+        $.post({
+            url: "/api/set_read",
+            dataType: "json",
+            data: {
+                ficid: ficid,
+                state: event.target.checked
+            }
+        }).done((data) => {
+            console.log(data)
+        })
+    })
+})

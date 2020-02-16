@@ -38,4 +38,22 @@ defmodule ErssWeb.ApiController do
 
     render(conn, "tags.json", tags: tags)
   end
+
+  def set_read(conn, %{"ficid" => ficid, "state" => state}) do
+    fic = Repo.get!(Erss.Fic, ficid)
+    user = conn.assigns.current_user
+
+    state =
+      case state do
+        "true" ->
+          true
+
+        _ ->
+          false
+      end
+
+    Erss.ReadingList.set_read(fic, user, state)
+
+    render(conn, "set_read.json", state: Erss.ReadingList.is_read(fic, user))
+  end
 end

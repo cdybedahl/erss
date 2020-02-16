@@ -20,4 +20,8 @@ defmodule ErssWeb.ApiView do
       }
     end)
   end
+
+  def render("set_read.json", %{state: state}) do
+    state
+  end
 end
