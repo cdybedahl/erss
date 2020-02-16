@@ -37,7 +37,7 @@ defmodule Erss.Fic do
     many_to_many(:warnings, Erss.Tag, join_through: "warning_fic", unique: true)
     many_to_many(:tags, Erss.Tag, join_through: "tag_fic")
 
-    has_many(:reading_lists, Erss.ReadingList)
+    has_many(:reading_list, Erss.ReadingList)
 
     timestamps()
   end

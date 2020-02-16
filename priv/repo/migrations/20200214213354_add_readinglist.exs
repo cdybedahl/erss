@@ -12,5 +12,6 @@ defmodule Erss.Repo.Migrations.AddReadinglist do
 
     create index(:reading_list, :fic_id)
     create index(:reading_list, :user_id)
+    create unique_index(:reading_list, [:fic_id, :user_id])
   end
 end
