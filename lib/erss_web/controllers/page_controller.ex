@@ -34,7 +34,8 @@ defmodule ErssWeb.PageController do
       pagelen: @pagelen,
       maxpage: maxpage,
       page: page,
-      title: "All Fics"
+      title: "All Fics",
+      route: fn page -> ErssWeb.Router.Helpers.page_path(conn, :index, page) end
     )
   end
 
@@ -78,7 +79,8 @@ defmodule ErssWeb.PageController do
       pagelen: @pagelen,
       maxpage: maxpage,
       page: page,
-      title: "Fics tagged '#{tag.name}'"
+      title: "Fics tagged '#{tag.name}'",
+      route: fn page -> ErssWeb.Router.Helpers.page_path(conn, :by_tag, id, page) end
     )
   end
 
@@ -101,7 +103,7 @@ defmodule ErssWeb.PageController do
           from([f, fr] in q, where: fr.total >= ^n)
       end
 
-    maxpage = div(Repo.aggregate(q, :count), @pagelen)
+    maxpage = 1 + div(Repo.aggregate(q, :count), @pagelen)
 
     fics =
       from([f, fr] in q,
@@ -136,6 +138,42 @@ defmodule ErssWeb.PageController do
       end
 
     redirect(conn, to: path)
+  end
+
+  def to_read(conn, %{"page" => page}) do
+    user = conn.assigns.current_user
+    page = String.to_integer(page)
+
+    q =
+      from(f in Erss.Fic,
+        join: fr in "fic_ratings",
+        on: f.id == fr.fic_id,
+        join: r in assoc(f, :reading_list),
+        where: r.user_id == ^user.id,
+        select: {f, fr.total},
+        preload: [
+          :author,
+          :rating,
+          :categories,
+          :fandoms,
+          :additional_tags,
+          :warnings,
+          :characters,
+          :relationships,
+          :language
+        ]
+      )
+
+    {fics, maxpage} = filter(conn, q, page)
+
+    render(conn, "index.html",
+      fics: fics,
+      pagelen: @pagelen,
+      maxpage: maxpage,
+      page: page,
+      title: "Reading list'",
+      route: fn page -> ErssWeb.Router.Helpers.page_path(conn, :to_read, page) end
+    )
   end
 
   def search(conn, _params) do

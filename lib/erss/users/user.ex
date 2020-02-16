@@ -8,7 +8,8 @@ defmodule Erss.Users.User do
   schema "users" do
     pow_user_fields()
 
-    has_many(:reading_lists, Erss.ReadingList)
+    has_many(:reading_list, Erss.ReadingList)
+    has_many(:to_read, through: [:reading_list, :fic])
 
     timestamps()
   end
