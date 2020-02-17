@@ -7,15 +7,18 @@ defmodule ErssWeb.TagController do
   alias Erss.Repo
 
   def index(conn, %{"type" => type, "page" => page}) do
+    user_id = conn.assigns.current_user.id
     q = type_to_source(type)
     page = String.to_integer(page)
     maxpage = div(Repo.aggregate(from(f in q, select: f, distinct: true), :count), @pagelen)
 
     tags =
       from(t in q,
+        join: r in assoc(t, :rating),
+        where: r.user_id == ^user_id,
         select: {t, count(t.id)},
-        group_by: t.id,
-        order_by: [desc: t.rating, asc: t.name],
+        group_by: [t.id, r.rating],
+        order_by: [desc: r.rating, asc: t.name],
         limit: @pagelen,
         offset: @pagelen * (^page - 1)
       )

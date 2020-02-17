@@ -11,8 +11,8 @@ defmodule ErssWeb.PageController do
 
     q =
       from(f in Erss.Fic,
-        join: fr in "fic_ratings",
-        on: f.id == fr.fic_id,
+        join: fr in "fic_user_ratings",
+        on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
         select: {f, fr.total}
       )
 
@@ -45,8 +45,8 @@ defmodule ErssWeb.PageController do
             select: f
           )
         ),
-        join: fr in "fic_ratings",
-        on: f.id == fr.fic_id,
+        join: fr in "fic_user_ratings",
+        on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
         select: {f, fr.total}
       )
 
@@ -90,8 +90,8 @@ defmodule ErssWeb.PageController do
 
     q =
       from(f in Erss.Fic,
-        join: fr in "fic_ratings",
-        on: f.id == fr.fic_id,
+        join: fr in "fic_user_ratings",
+        on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
         join: r in assoc(f, :reading_list),
         where: r.user_id == ^user.id,
         select: {f, fr.total}

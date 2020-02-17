@@ -1,12 +1,12 @@
 defmodule ErssWeb.ApiView do
   use ErssWeb, :view
 
-  def render("tag.json", %{tag: tag}) do
+  def render("tag.json", %{tag: tag, rating: rating}) do
     %{
       id: tag.id,
       name: tag.name,
       url: tag.url,
-      rating: tag.rating
+      rating: rating
     }
   end
 
@@ -15,8 +15,7 @@ defmodule ErssWeb.ApiView do
       %{
         id: tag.id,
         name: tag.name,
-        url: tag.url,
-        rating: tag.rating
+        url: tag.url
       }
     end)
   end

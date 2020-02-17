@@ -4,7 +4,7 @@
             <%= tag :input, type: "checkbox", class: "reading_list_checkbox", ficid: @fic.id, checked: Erss.ReadingList.is_read(@fic, @current_user) %>
             <span class="title">#<%= @fic.id %> <%= link(@fic.title, to: @fic.link, target: "_blank") %></span>
             <br>
-            <span class="author">by <%= render "tag.html", tag: @fic.author, conn: @conn %></span>
+            <span class="author">by <%= render "tag.html", tag: @fic.author, conn: @conn, current_user: @current_user %></span>
         <% end %>
     <% end %>
     <%= content_tag :tr do %>
@@ -22,21 +22,21 @@
     <% end %>
     <%= content_tag :tr do %>
         <%= content_tag :th do %>
-            <%= render "tag.html", tag: @fic.language, conn: @conn %>
+            <%= render "tag.html", tag: @fic.language, conn: @conn, current_user: @current_user %>
         <% end %>
         <%= content_tag :th do %>
-            <%= render "tag.html", tag: @fic.rating, conn: @conn %>
+            <%= render "tag.html", tag: @fic.rating, conn: @conn, current_user: @current_user %>
         <% end %>
         <%= content_tag :th, @fic.total %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= render("ratinglist.html", tags: @fic.categories, title: "Categories", conn: @conn) %>
-        <%= render("ratinglist.html", tags: @fic.fandoms, title: "Fandoms", conn: @conn) %>
-        <%= render("ratinglist.html", tags: @fic.warnings, title: "Warnings", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.categories, title: "Categories", conn: @conn, current_user: @current_user) %>
+        <%= render("ratinglist.html", tags: @fic.fandoms, title: "Fandoms", conn: @conn, current_user: @current_user) %>
+        <%= render("ratinglist.html", tags: @fic.warnings, title: "Warnings", conn: @conn, current_user: @current_user) %>
     <% end %>
     <%= content_tag :tr do %>
-        <%= render("ratinglist.html", tags: @fic.relationships, title: "Relationships", conn: @conn) %>
-        <%= render("ratinglist.html", tags: @fic.characters, title: "Characters", conn: @conn) %>
-        <%= render("ratinglist.html", tags: @fic.additional_tags, title: "Additional Tags", conn: @conn) %>
+        <%= render("ratinglist.html", tags: @fic.relationships, title: "Relationships", conn: @conn, current_user: @current_user) %>
+        <%= render("ratinglist.html", tags: @fic.characters, title: "Characters", conn: @conn, current_user: @current_user) %>
+        <%= render("ratinglist.html", tags: @fic.additional_tags, title: "Additional Tags", conn: @conn, current_user: @current_user) %>
     <% end %>
 <% end %>

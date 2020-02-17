@@ -14,13 +14,24 @@ defmodule ErssWeb.ApiController do
   end
 
   def change(conn, id, amount) do
-    tag = Repo.get(Erss.Tag, id)
+    user_id = conn.assigns.current_user.id
+    id = String.to_integer(id)
 
-    tag =
-      change(tag, rating: tag.rating + amount)
+    rating =
+      case Repo.get_by(Erss.Rating, tag_id: id, user_id: user_id) do
+        nil ->
+          Repo.insert!(%Erss.Rating{tag_id: id, rating: 0, user_id: user_id})
+
+        r ->
+          r
+      end
+      |> Repo.preload(:tag)
+
+    rating =
+      change(rating, rating: rating.rating + amount)
       |> Repo.update!()
 
-    render(conn, "tag.json", tag: tag)
+    render(conn, "tag.json", tag: rating.tag, rating: rating.rating)
   end
 
   def find_tag(conn, %{"term" => term}) do

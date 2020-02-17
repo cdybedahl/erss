@@ -25,7 +25,7 @@
         <% end %>
     <%= for %{tag: t, count: c} <- data do %>
         <%= content_tag :tr do %>
-            <%= content_tag :td, render(ErssWeb.PageView, "tag.html", tag: t, conn: @conn) %>
+            <%= content_tag :td, render(ErssWeb.PageView, "tag.html", tag: t, conn: @conn, current_user: @current_user) %>
             <%= content_tag :td, c %>
         <% end %>
     <% end %>
