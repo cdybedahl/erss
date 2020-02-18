@@ -9,6 +9,9 @@
 
 <%= content_tag :h1, @title, class: "ficlist" %>
 
+<%= if Enum.empty?(@fics) do %>
+    <%= content_tag :h2, "Sorry, no fics visible with current settings."%>
+<% end %>
 <%= for fic <- @fics do %>
     <%= render "fic.html", fic: fic, conn: @conn, current_user: @current_user %>
 <% end %>

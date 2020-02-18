@@ -34,6 +34,7 @@ defmodule ErssWeb.PageController do
 
   def by_tag(conn, %{"page" => page, "id" => id}) do
     page = String.to_integer(page)
+    limit = get_session(conn, :show_minimum)
     tag = Repo.get!(Erss.Tag, id)
 
     q =
@@ -47,6 +48,7 @@ defmodule ErssWeb.PageController do
         ),
         join: fr in "fic_user_ratings",
         on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
+        where: fr.total >= ^limit,
         select: {f, fr.total}
       )
 
@@ -136,7 +138,7 @@ defmodule ErssWeb.PageController do
           from([f, fr] in q, where: fr.total >= ^n)
       end
 
-    maxpage = 1 + div(Repo.aggregate(q, :count), @pagelen)
+    maxpage = 1 + div(Repo.aggregate(q, :count) - 1, @pagelen)
 
     fics =
       from([f, fr] in q,
