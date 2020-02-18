@@ -11,6 +11,7 @@ defmodule ErssWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fix_initial_session
   end
 
   pipeline :api do
@@ -57,5 +58,24 @@ defmodule ErssWeb.Router do
 
     post "/find_tag", ApiController, :find_tag
     post "/set_read", ApiController, :set_read
+  end
+
+  def fix_initial_session(conn, _opts) do
+    conn =
+      case get_session(conn, :sort_by) do
+        nil ->
+          put_session(conn, :sort_by, "rating")
+
+        _ ->
+          conn
+      end
+
+    case get_session(conn, :show_minimum) do
+      nil ->
+        put_session(conn, :show_minimum, 0)
+
+      _ ->
+        conn
+    end
   end
 end
