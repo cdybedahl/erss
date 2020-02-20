@@ -81,7 +81,7 @@ defmodule Erss.Fic do
   end
 
   def get_description(fic) do
-    re = ~r[\A<p>by <a rel="author" href=".*?</a></p>(.*)<p>Words: ]msu
+    re = ~r[\A<p>by (?:<a rel="author" href=".*?</a>|Anonymous)</p>(.*)<p>Words: ]msu
 
     case Regex.run(re, fic.raw) do
       [_, before] ->
