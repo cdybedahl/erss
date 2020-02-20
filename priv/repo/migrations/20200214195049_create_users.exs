@@ -1,5 +1,6 @@
 defmodule Erss.Repo.Migrations.CreateUsers do
   use Ecto.Migration
+  alias Erss.Users.User
 
   def change do
     create table(:users) do
@@ -10,5 +11,14 @@ defmodule Erss.Repo.Migrations.CreateUsers do
     end
 
     create unique_index(:users, [:email])
+
+    flush()
+
+    User.changeset(%User{}, %{
+      email: "calle@dybedahl.se",
+      password: "citronfromage",
+      password_confirmation: "citronfromage"
+    })
+    |> Erss.Repo.insert_or_update!()
   end
 end

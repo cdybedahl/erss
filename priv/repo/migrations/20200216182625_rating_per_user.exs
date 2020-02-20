@@ -15,9 +15,27 @@ defmodule Erss.Repo.Migrations.RatingPerUser do
     create unique_index(:rating, [:tag_id, :user_id])
 
     execute(
+      ~S"INSERT INTO rating (user_id, tag_id, rating, inserted_at, updated_at) SELECT 1, id, rating, NOW(), NOW() FROM tag",
+      ""
+    )
+
+    execute(
+      ~S"DROP VIEW fic_ratings",
       ~S"""
-      INSERT INTO rating (user_id, tag_id, rating, inserted_at, updated_at) SELECT 1, id, rating, NOW(), NOW() FROM tag;
-      DROP VIEW fic_ratings;
+      create or replace view fic_ratings as
+      select fic.id as fic_id,
+         sum(tag.rating) as total
+      from tag_fic,
+       tag,
+       fic
+      where fic_id = fic.id
+      and tag_fic.tag_id = tag.id
+      group by fic.id
+      """
+    )
+
+    execute(
+      ~S"""
       CREATE OR REPLACE VIEW fic_user_ratings AS
       SELECT tf.fic_id,
        r.user_id,

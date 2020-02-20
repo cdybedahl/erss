@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :erss, Erss.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "calle",
+  password: "",
   database: "erss_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
