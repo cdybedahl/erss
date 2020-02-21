@@ -13,7 +13,7 @@ defmodule Erss.MixProject do
       deps: deps(),
       releases: [
         standard: [
-          version: "0.1.2",
+          version: "0.2.0",
           applications: [erss: :permanent]
         ]
       ]
