@@ -38,6 +38,20 @@ config :erss, :pow,
   extensions: [PowPersistentSession],
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks
 
+config :erss, :pow_assent,
+  providers: [
+    github: [
+      client_id: "03ea74f7b3d7158c3f71",
+      client_secret: "98b8b1558b71291063607d8e94b287d05d2f26a8",
+      strategy: Assent.Strategy.Github
+    ],
+    facebook: [
+      client_id: "194537568568597",
+      client_secret: "3391b96dbbdbb8c2d127eaed68c21c04",
+      strategy: Assent.Strategy.Facebook
+    ]
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

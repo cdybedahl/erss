@@ -54,7 +54,10 @@ defmodule Erss.MixProject do
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.6"},
       {:tzdata, "~> 1.0"},
-      {:pow, "~> 1.0.17"}
+      {:pow, "~> 1.0.17"},
+      {:pow_assent, "~> 0.4.6"},
+      {:certifi, "~> 2.4"},
+      {:ssl_verify_fun, "~> 1.1"}
     ]
   end
 
