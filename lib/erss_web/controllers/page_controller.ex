@@ -11,7 +11,7 @@ defmodule ErssWeb.PageController do
 
     q =
       from(f in Erss.Fic,
-        join: fr in "fic_user_ratings",
+        left_join: fr in "fic_user_ratings",
         on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
         select: {f, fr.total}
       )
@@ -34,7 +34,6 @@ defmodule ErssWeb.PageController do
 
   def by_tag(conn, %{"page" => page, "id" => id}) do
     page = String.to_integer(page)
-    limit = get_session(conn, :show_minimum)
     tag = Repo.get!(Erss.Tag, id)
 
     q =
@@ -46,9 +45,8 @@ defmodule ErssWeb.PageController do
             select: f
           )
         ),
-        join: fr in "fic_user_ratings",
+        left_join: fr in "fic_user_ratings",
         on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
-        where: fr.total >= ^limit,
         select: {f, fr.total}
       )
 
@@ -92,7 +90,7 @@ defmodule ErssWeb.PageController do
 
     q =
       from(f in Erss.Fic,
-        join: fr in "fic_user_ratings",
+        left_join: fr in "fic_user_ratings",
         on: f.id == fr.fic_id and fr.user_id == ^conn.assigns.current_user.id,
         join: r in assoc(f, :reading_list),
         where: r.user_id == ^user.id,
@@ -135,7 +133,7 @@ defmodule ErssWeb.PageController do
           q
 
         n when is_integer(n) ->
-          from([f, fr] in q, where: fr.total >= ^n)
+          from([f, fr] in q, where: (is_nil(fr.total) and ^n <= 0) or fr.total >= ^n)
       end
 
     maxpage = 1 + div(Repo.aggregate(q, :count) - 1, @pagelen)
@@ -158,7 +156,8 @@ defmodule ErssWeb.PageController do
       )
       |> Repo.all()
       |> Enum.map(fn {fic, total} ->
-        fic |> Map.put(:total, total) |> Map.put(:rclass, rating_class(total))
+        r = total || 0
+        fic |> Map.put(:total, r) |> Map.put(:rclass, rating_class(r))
       end)
 
     {fics, maxpage}
