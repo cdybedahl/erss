@@ -1,8 +1,8 @@
 <%= render "pagination.html", assigns %>
 <%= content_tag :ul, class: "tags" do %>
-    <%= for {t,count} <- @tags do %>
+    <%= for item <- @tags do %>
         <%= content_tag :li do %>
-            <%= render ErssWeb.PageView, "tag.html", tag: t, conn: @conn, current_user: @current_user %> (<%= count %> fics)
+            <%= render ErssWeb.PageView, "tag.html", tag: item.tag, conn: @conn, current_user: @current_user %> (<%= item.count %> fics)
         <% end %>
     <% end %>
 <% end %>
