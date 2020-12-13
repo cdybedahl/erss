@@ -39,24 +39,24 @@ defmodule Erss.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.12"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.1"},
+      {:phoenix, "~> 1.5.7"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_ecto, "~> 4.2"},
+      {:ecto_sql, "~> 3.5"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_html, "~> 2.14"},
+      {:phoenix_live_reload, "~> 1.3", only: :dev},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.4"},
       {:feeder_ex, "~> 1.1"},
-      {:httpoison, "~> 1.6"},
-      {:meeseeks, "~> 0.14.0"},
-      {:quantum, "~> 2.3"},
+      {:httpoison, "~> 1.7"},
+      {:meeseeks, "~> 0.15"},
+      {:quantum, "~> 3.3"},
       {:timex, "~> 3.6"},
       {:tzdata, "~> 1.0"},
-      {:pow, "~> 1.0.17"},
-      {:pow_assent, "~> 0.4.6"},
-      {:certifi, "~> 2.4"},
+      {:pow, "~> 1.0"},
+      {:pow_assent, "~> 0.4"},
+      {:certifi, "~> 2.5"},
       {:ssl_verify_fun, "~> 1.1"}
     ]
   end

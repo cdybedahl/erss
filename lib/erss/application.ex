@@ -14,7 +14,8 @@ defmodule Erss.Application do
       ErssWeb.Endpoint,
       # Starts a worker by calling: Erss.Worker.start_link(arg)
       # {Erss.Worker, arg},
-      Erss.Scheduler
+      Erss.Scheduler,
+      {Phoenix.PubSub, [name: Erss.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

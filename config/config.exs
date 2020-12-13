@@ -17,7 +17,7 @@ config :erss, ErssWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "GIGKaJqY9PoDvvaMpz+h51D7Ofy6slzQQcEw/4LI5nUqEZAiRQfVNiSi/YAs1BNR",
   render_errors: [view: ErssWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Erss.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Erss.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
